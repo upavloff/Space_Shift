@@ -1,4 +1,4 @@
-#Tue Jan 19 00:17:39 CET 2021
+#Tue Jan 19 23:40:27 CET 2021
 base.0=/home/ulysse/Documents/MASTER/M2/EVHI/Space_Shift/Temp/gradleOut/launcher/build/intermediates/transforms/dexMerger/release/0
 path.0=classes.dex
 renamed.0=classes.dex

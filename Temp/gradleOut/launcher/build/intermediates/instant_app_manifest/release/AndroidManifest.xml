@@ -9,7 +9,7 @@
 
     <uses-sdk
         android:minSdkVersion="19"
-        android:targetSdkVersion="28" />
+        android:targetSdkVersion="29" />
 
     <supports-screens
         android:anyDensity="true"
@@ -70,7 +70,7 @@
             android:value="portrait|landscape" />
         <meta-data
             android:name="unity.build-id"
-            android:value="8f8b9c78-e4be-4104-abff-660c65194ae0" />
+            android:value="bd47225d-5874-44a3-8903-d93bebb3bfac" />
     </application>
 
 </manifest>

@@ -11,93 +11,79 @@ public class PlayerMotor : MonoBehaviour
     private float rotSpeedHorizontal = 2.0f;
     private float rotSpeedVertical = 1.0f;
 
-    public bool usingAccelerometer=false;
     public bool usingGyroscope=false;
 
-    //private 
+    private Quaternion initGyroInput;
+
+    private GUIStyle guiStyle = new GUIStyle(); //create a new variable
+
+    private Vector3 relativeCoordinate = new Vector3(0,0,0);
+    
+
+    
 
     void Start(){
     	controller = GetComponent<CharacterController>();
-    	if (SystemInfo.supportsAccelerometer){
-    		Debug.Log("supportsAccelerometer");
-    		Screen.orientation = ScreenOrientation.LandscapeLeft;
-    		usingAccelerometer=true;
-    	}
     	if (SystemInfo.supportsGyroscope){
-    		Debug.Log("supportsGyroscope");
-    		Screen.orientation = ScreenOrientation.LandscapeLeft;
     		Input.gyro.enabled = true;
+    		Debug.Log("supports Gyroscope");
+    		Screen.orientation = ScreenOrientation.LandscapeLeft;
     		Input.gyro.updateInterval = 0.0167F;
     		usingGyroscope=true;
+    		initGyroInput = Input.gyro.attitude;
     	}else{
     		Debug.Log(" don't supports Gyroscope or Accelerometer");
     	}
+    	guiStyle.fontSize = 30; //change the font size
 
     }
 
+    
     void OnGUI(){
-    	if (usingAccelerometer){
-    		GUI.Box(new Rect(20, Screen.height - 100,200,100),"");
-	    	GUI.Label(new Rect(40, Screen.height - 100,200,100),"acceleration X = "+Input.acceleration.x);
-			GUI.Label(new Rect(40,Screen.height - 60,200,50),"acceleration Y = "+Input.acceleration.y);
-			GUI.Label(new Rect(40,Screen.height - 30,200,50),"acceleration Z = "+Input.acceleration.z);
-		}else if (usingGyroscope) {
-			GUI.Box(new Rect(20, Screen.height - 100,200,100),"");
-			GUI.Label(new Rect(40, Screen.height - 100,200,100),"Gyroscope X = "+Input.gyro.rotationRate.x);
-			GUI.Label(new Rect(40,Screen.height - 60,200,50),"Gyroscope Y = "+Input.gyro.rotationRate.y);
-			GUI.Label(new Rect(40,Screen.height - 30,200,50),"Gyroscope Z = "+Input.gyro.rotationRate.z);
+    	if (usingGyroscope) {
+			GUI.Box(new Rect(380, Screen.height - 200,400,200),"gyro");
+
+			GUI.Label(new Rect(400, Screen.height - 200,200,100),"Gyroscope X = "+initGyroInput.x,guiStyle);
+			GUI.Label(new Rect(400,Screen.height - 120,200,50),"Gyroscope Y = "+initGyroInput.y,guiStyle);
+			GUI.Label(new Rect(400,Screen.height - 60,200,50),"Gyroscope Z = "+initGyroInput.z,guiStyle);
+
+			GUI.Label(new Rect(800,Screen.height - 120,200,50)," relativeCoordinate = "+relativeCoordinate,guiStyle);
+			
 		}else{
-			GUI.Box(new Rect(20, Screen.height - 100,200,100),"");
-			GUI.Label(new Rect(40, Screen.height - 100,200,100),"test 1");
-			GUI.Label(new Rect(40,Screen.height - 60,200,50),"test 2");
-			GUI.Label(new Rect(40,Screen.height - 30,200,50),"test 3");
+			GUI.Box(new Rect(20, Screen.height - 200,400,200),"");
+			GUI.Label(new Rect(40, Screen.height - 200,200,100),"test 1",guiStyle);
+			GUI.Label(new Rect(40,Screen.height - 120,200,50),"test 2",guiStyle);
+			GUI.Label(new Rect(40,Screen.height - 60,200,50),"test 3",guiStyle);
 		}
     }
     
     void Update(){
-    	//forward velocity
-    	//Vector3 inputs = Input.acceleration;
- 
-    	if (usingAccelerometer){
-	    	transform.Rotate( rotSpeedVertical*Input.acceleration.y,0f,rotSpeedHorizontal * (-Input.acceleration.x ));
-    	}else if (usingGyroscope){
-	    	transform.Rotate( rotSpeedVertical*(-Input.gyro.rotationRate.x),0f,rotSpeedHorizontal * (-Input.gyro.rotationRate.y));
-	    }else{
+    	if (usingGyroscope){
+    		Quaternion relativeRotation = Quaternion.Inverse(initGyroInput)*Input.gyro.attitude;
+
+	    	float coordX = relativeRotation.eulerAngles.x;
+	    	float coordY = relativeRotation.eulerAngles.y;
+
+	    	//euleur coordinate can't be negative they go straight from 0 to 360 this
+	    	//how you fix it :
+	    	if (coordX>180){
+	    		coordX=coordX-360;
+	    	}if (coordY>180){
+	    		coordY= coordY-360;
+	    	}
+	    	relativeCoordinate = new Vector3(coordX,coordY,0f);
+	    	transform.rotation *= Quaternion.Euler(0.1f*-coordX,0f,0.1f*-coordY);		//use deltaTime ?
+	    }else{	    	
 	    	transform.Rotate( rotSpeedVertical*Input.GetAxis("Vertical"),0f,rotSpeedHorizontal * - Input.GetAxis("Horizontal"));
 	    }
 
 	    transform.position +=  transform.forward * baseSpeed * Time.deltaTime;
-    	//player input
-    	/*Vector3 moveVector = transform.forward * baseSpeed;
-    	//get the delta direction
-    	//Vector3 yaw = (inputs.z + Input.GetAxis("Horizontal") ) * transform.forward * rotSpeedZ * Time.deltaTime;
-    	Vector3 pitch = (inputs.y + Input.GetAxis("Vertical") ) * transform.up * rotSpeedY * Time.deltaTime;
-
-    	//Vector3 dir = yaw + pitch;
-
-    	float maxX = Quaternion.LookRotation(moveVector + dir).eulerAngles.x;
-
-    	if (maxX < 90 && maxX > 70 || maxX >270 && maxX < 290){
-    		//too far don't do anything
-    	}else{
-    		moveVector += dir;
-
-    		transform.rotation = Quaternion.LookRotation(moveVector);
-    	}
-
-    	controller.Move(moveVector * Time.deltaTime);*/
-
-
     }
 
     public void SwitchControl(){
-    	Debug.Log("Control Switching");
-    	if (usingAccelerometer){
-    		usingAccelerometer=false;
-    		usingGyroscope=true;
-    	}else if( usingGyroscope){
-    		usingGyroscope=false;
-    		usingAccelerometer=true;
+    	Debug.Log("Update Coordinate");
+    	if (usingGyroscope){
+    		initGyroInput = Input.gyro.attitude;
     	}
     }
 
