@@ -350,12 +350,6 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: a8b6c919b2049fcc280823488144371f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: UnityStandardAssets.CrossPlatformInput
-    className: Joystick
-  - hash:
-      serializedVersion: 2
       Hash: 4bd1cc3c85989d2213a9a8fd9d09e63f
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.CrossPlatformInput
@@ -500,7 +494,7 @@ ScriptsOnlyBuild:
     className: AeroplanePropellerAnimator
   - hash:
       serializedVersion: 2
-      Hash: f67e9aee6cc917ec93fefe40f0f4ee80
+      Hash: 5b5ea47be4aad9a52e44c055987093bb
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMotor
@@ -594,12 +588,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_StyleSheet
-  - hash:
-      serializedVersion: 2
-      Hash: 0ad3d241a23d0d8f9b37d94c649098c1
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlayerMovement
   - hash:
       serializedVersion: 2
       Hash: 8cd1cbba27f3cb1717254f668e9e0d5a

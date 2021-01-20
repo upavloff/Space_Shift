@@ -41,7 +41,7 @@ public class PlayerMotor : MonoBehaviour
     
     void OnGUI(){
     	if (usingGyroscope) {
-			GUI.Box(new Rect(380, Screen.height - 200,400,200),"gyro");
+			GUI.Box(new Rect(380, Screen.height - 200,400,200),"");
 
 			GUI.Label(new Rect(400, Screen.height - 200,200,100),"Gyroscope X = "+initGyroInput.x,guiStyle);
 			GUI.Label(new Rect(400,Screen.height - 120,200,50),"Gyroscope Y = "+initGyroInput.y,guiStyle);
