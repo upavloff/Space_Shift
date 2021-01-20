@@ -7,7 +7,7 @@ public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
 
-    private float baseSpeed = 10.0f;
+    private float baseSpeed = 30.0f;
     private float rotSpeedHorizontal = 2.0f;
     private float rotSpeedVertical = 1.0f;
 
@@ -17,7 +17,7 @@ public class PlayerMotor : MonoBehaviour
 
     private GUIStyle guiStyle = new GUIStyle(); //create a new variable
 
-    private Vector3 relativeCoordinate = new Vector3(0,0,0);
+    public Vector3 relativeCoordinate = new Vector3(0,0,0);
     
 
     

@@ -22,6 +22,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/spaceScene.unity:
@@ -58,22 +59,26 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11420}
     - Class: 114
+      Script: {instanceID: 11424}
+    - Class: 114
       Script: {instanceID: 11464}
     - Class: 114
       Script: {instanceID: 11852}
     - Class: 114
-      Script: {instanceID: 11882}
+      Script: {instanceID: 12548}
     - Class: 114
-      Script: {instanceID: 12552}
+      Script: {instanceID: 12752}
     - Class: 114
-      Script: {instanceID: 12756}
+      Script: {instanceID: 12754}
     - Class: 114
-      Script: {instanceID: 12758}
+      Script: {instanceID: 13108}
     - Class: 114
-      Script: {instanceID: 13114}
+      Script: {instanceID: 13824}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
       Script: {instanceID: 0}
     - Class: 143
       Script: {instanceID: 0}
@@ -494,7 +499,7 @@ ScriptsOnlyBuild:
     className: AeroplanePropellerAnimator
   - hash:
       serializedVersion: 2
-      Hash: 5b5ea47be4aad9a52e44c055987093bb
+      Hash: 883a34a4a80123f26c1db23a001d4bb6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMotor
@@ -560,7 +565,7 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
-      Hash: 5c6b7d9f5b3b84354dcca7574609805b
+      Hash: 6a1501e2320d687df8d23226cb998690
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FollowPlayer
@@ -681,4 +686,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/spaceScene.unity
-  playerPath: "/home/ulysse/T\xE9l\xE9chargements/Space_Shift.apk"
+  playerPath: /home/ulysse/Documents/MASTER/M2/EVHI/Space_Shift/docs/Space_Shift.apk
