@@ -7,7 +7,7 @@ public class FollowPlayer : MonoBehaviour
 	public Transform cameraTarget;
 	public Transform player;
 	public float cameraRotationSpeed = 50f;
-	public float extraRotSpeed=5f;
+	public float extraRotSpeed=10f;
 
 	private bool usingGyroscope=false;
 

@@ -7,9 +7,9 @@ public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
 
-    private float baseSpeed = 30.0f;
-    private float rotSpeedHorizontal = 2.0f;
-    private float rotSpeedVertical = 1.0f;
+    private float baseSpeed = 50.0f;
+    private float rotSpeedHorizontal = 5.0f;
+    private float rotSpeedVertical = 2.0f;
 
     public bool usingGyroscope=false;
 
@@ -71,10 +71,10 @@ public class PlayerMotor : MonoBehaviour
 	    	}if (coordY>180){
 	    		coordY= coordY-360;
 	    	}
-	    	relativeCoordinate = new Vector3(coordX,coordY,0f);
-	    	transform.rotation *= Quaternion.Euler(0.1f*-coordX,0f,0.1f*-coordY);		//use deltaTime ?
+	    	relativeCoordinate = new Vector3(coordX,coordY,0f)*Time.deltaTime;
+	    	transform.rotation *= Quaternion.Euler(Time.deltaTime*rotSpeedVertical*-coordX,0f,Time.deltaTime*rotSpeedHorizontal*-coordY);		//use deltaTime ?
 	    }else{	    	
-	    	transform.Rotate( rotSpeedVertical*Input.GetAxis("Vertical"),0f,rotSpeedHorizontal * - Input.GetAxis("Horizontal"));
+	    	transform.Rotate( rotSpeedVertical*Input.GetAxis("Vertical")*0.1f,0f,rotSpeedHorizontal * - Input.GetAxis("Horizontal")*0.1f);
 	    }
 
 	    transform.position +=  transform.forward * baseSpeed * Time.deltaTime;
