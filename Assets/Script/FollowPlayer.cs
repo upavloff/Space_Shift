@@ -13,8 +13,6 @@ public class FollowPlayer : MonoBehaviour
 
     private GUIStyle guiStyle = new GUIStyle(); //create a new variable
 
-	public Scrollbar scrollbar;
-
 	private PlayerMotor infoMotor;
 
 
@@ -23,7 +21,6 @@ public class FollowPlayer : MonoBehaviour
 		if (SystemInfo.supportsGyroscope){
 			usingGyroscope=true;
 		}
-		scrollbar.onValueChanged.AddListener((float val) => ScrollbarCallback(val));
 		guiStyle.fontSize = 30;
 		infoMotor = player.GetComponent<PlayerMotor>();
 	}
@@ -45,17 +42,5 @@ public class FollowPlayer : MonoBehaviour
         
     }
 
-    void ScrollbarCallback(float value)
-	{
-	    Debug.Log(value*20+1);
-	    extraRotSpeed = value*20+1;
-	}
-
-	public void SetToZero(){
-		extraRotSpeed=5f;
-	}
-
-	void OnGUI(){
-		GUI.Label(new Rect(Screen.width-500, 40,200,100),"RotSpeed = "+extraRotSpeed,guiStyle);
-	}
+    
 }

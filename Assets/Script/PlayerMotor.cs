@@ -19,6 +19,7 @@ public class PlayerMotor : MonoBehaviour
 
     public Vector3 relativeCoordinate = new Vector3(0,0,0);
     
+	public Scrollbar scrollbar;
 
     
 
@@ -32,13 +33,16 @@ public class PlayerMotor : MonoBehaviour
     		usingGyroscope=true;
     		initGyroInput = Input.gyro.attitude;
     	}else{
+    		rotSpeedHorizontal *= 5f;
+    		rotSpeedVertical *= 5f;
     		Debug.Log(" don't supports Gyroscope or Accelerometer");
     	}
     	guiStyle.fontSize = 30; //change the font size
+		scrollbar.onValueChanged.AddListener((float val) => ScrollbarCallback(val));
 
     }
 
-    
+    /*
     void OnGUI(){
     	if (usingGyroscope) {
 			GUI.Box(new Rect(380, Screen.height - 200,400,200),"");
@@ -55,7 +59,7 @@ public class PlayerMotor : MonoBehaviour
 			GUI.Label(new Rect(40,Screen.height - 120,200,50),"test 2",guiStyle);
 			GUI.Label(new Rect(40,Screen.height - 60,200,50),"test 3",guiStyle);
 		}
-    }
+    }*/
     
     void Update(){
     	if (usingGyroscope){
@@ -86,5 +90,16 @@ public class PlayerMotor : MonoBehaviour
     		initGyroInput = Input.gyro.attitude;
     	}
     }
+
+    public void ScrollbarCallback(float value)
+	{
+	    Debug.Log((value+1)*100);
+	    baseSpeed = (value+1)*100;
+	}
+
+
+	void OnGUI(){
+		GUI.Label(new Rect(Screen.width-500, 40,200,100),"Speed = "+baseSpeed);
+	}
 
 }
