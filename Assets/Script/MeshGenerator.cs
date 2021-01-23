@@ -102,7 +102,7 @@ public class MeshGenerator : MonoBehaviour
     		{
     			float PerlinGirth;
     			if (x<=xSize/2){
-					PerlinGirth = girth - 10*Mathf.PerlinNoise(smooth*x+orgXrand/2,smooth*z+orgZrand/2) - 10*Mathf.PerlinNoise(x+orgXrand,z+orgZrand);
+					PerlinGirth = girth - 10*Mathf.PerlinNoise(smooth*x+orgXrand/2,smooth*z+orgZrand/2) - 10*Mathf.PerlinNoise(x+orgXrand,z+orgZrand) -(Random.Range(0f,1f)>0.7f ? 130f : 200f)*(Random.Range(0f,1f)>0.99f ? 1 : 0);
     			}else{
     				PerlinGirth = perlinGirthList[(z+1)*xSize - x + z ]; 
     			}
