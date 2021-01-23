@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter))]
 public class MeshGenerator : MonoBehaviour
 {
 	public Mesh mesh1;	
@@ -20,7 +19,7 @@ public class MeshGenerator : MonoBehaviour
 
 	private int xSize = 40;
 	private int zSize = 80;
-	private float girth = 80f;
+	private float girth = 160f;
 
 	public float smooth = .2f;
 
@@ -31,7 +30,7 @@ public class MeshGenerator : MonoBehaviour
 	private float orgZrand;
 
 	public float angleMax = Mathf.PI/2f;//3f/2f; //en degré
-	private float distanceBetweenPoints = 800f;
+	private float distanceBetweenPoints = 1600f;
 
 	private int nbRepeat = 0;
 
@@ -88,8 +87,8 @@ public class MeshGenerator : MonoBehaviour
 
     	for (int z=0; z<=zSize; z++)
     	{
-    		init1 = QuadraticCurve((float)z/(float)(zSize+1));
-    		init2 = QuadraticCurve((float)(z+1)/(float)(zSize+1));
+    		init1 = QuadraticCurve((float)z/(float)zSize);
+    		init2 = QuadraticCurve((float)(z+1)/(float)zSize);
     		//get the direction of the curv (gradient)
     		Vector3 dir = (init2 - init1).normalized;
 
@@ -103,7 +102,7 @@ public class MeshGenerator : MonoBehaviour
     		{
     			float PerlinGirth;
     			if (x<=xSize/2){
-					PerlinGirth = girth - 10*Mathf.PerlinNoise(smooth*x+orgXrand/2,smooth*z+orgZrand/2) - 10*Mathf.PerlinNoise(smooth*x+orgXrand,smooth*z+orgZrand);
+					PerlinGirth = girth - 10*Mathf.PerlinNoise(smooth*x+orgXrand/2,smooth*z+orgZrand/2) - 10*Mathf.PerlinNoise(x+orgXrand,z+orgZrand);
     			}else{
     				PerlinGirth = perlinGirthList[(z+1)*xSize - x + z ]; 
     			}
@@ -169,11 +168,15 @@ public class MeshGenerator : MonoBehaviour
     	mesh.RecalculateNormals();
     }
 
+
+    public Vector3 Lerp( Vector3 a, Vector3 b, float t ){
+		return t*b + (1-t)*a;
+	}
+
     private Vector3 QuadraticCurve(float t){
-    	if (t>=1f) t=0.99f;
-    	Vector3 p0 = Vector3.Lerp(pointA, pointB, t);
-		Vector3 p1 = Vector3.Lerp(pointB, pointC, t);
-		return Vector3.Lerp(p0,p1, t); 
+    	Vector3 p0 = Lerp(pointA, pointB, t);
+		Vector3 p1 = Lerp(pointB, pointC, t);
+		return Lerp(p0,p1, t); 
 
     }
 
@@ -191,9 +194,9 @@ public class MeshGenerator : MonoBehaviour
     	{
     		Gizmos.color = Color.blue;
     		if (i== vertices.Length-1){
-    			Gizmos.DrawSphere(vertices[i], 1f);
+    			Gizmos.DrawSphere(vertices[i], 5f);
     		}else{
-    			Gizmos.DrawSphere(vertices[i], 1f);
+    			Gizmos.DrawSphere(vertices[i], 5f);
     		}
     		//Debug.Log("present"); 
     		

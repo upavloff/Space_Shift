@@ -7,7 +7,7 @@ public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
 
-    private float baseSpeed = 50.0f;
+    private float baseSpeed = 150.0f;
     private float rotSpeedHorizontal = 5.0f;
     private float rotSpeedVertical = 2.0f;
 
