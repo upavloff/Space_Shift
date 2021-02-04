@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
 
 public class FollowPlayer : MonoBehaviour
 {
@@ -7,7 +9,10 @@ public class FollowPlayer : MonoBehaviour
 	public Transform cameraTarget;
 	public Transform player;
 	public float cameraRotationSpeed = 50f;
-	public float extraRotSpeed=10f;
+    public float positionAdaptSpeed = 10f;
+	public float rotationAdaptSpeed = 10f;
+
+    public float menuRotation = 5f;
 
 	private bool usingGyroscope=false;
 
@@ -15,6 +20,8 @@ public class FollowPlayer : MonoBehaviour
 
 	private PlayerMotor infoMotor;
 
+    public bool isPlaying = false;   
+    public bool cameraTurning = false;  
 
  
 	void Start(){
@@ -28,19 +35,58 @@ public class FollowPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position =Vector3.Slerp(transform.position ,cameraTarget.position,Time.deltaTime*extraRotSpeed);
-        //transform.position =Vector3.Scale( Vector3.Slerp(transform.position ,cameraTarget.position,Time.deltaTime*extraRotSpeed),Vector3.up)+new Vector3(cameraTarget.position.x,0,cameraTarget.position.z);
+        if (!isPlaying) return;
+        transform.position = Vector3.Lerp(transform.position ,cameraTarget.position,Time.deltaTime*positionAdaptSpeed);
+        //transform.position =Vector3.Scale( Vector3.Slerp(transform.position ,cameraTarget.position,Time.deltaTime*positionAdaptSpeed),Vector3.up)+new Vector3(cameraTarget.position.x,0,cameraTarget.position.z);
         //transform.position = player.position + offset;
         //transform.rotation = Quaternion.Slerp(transform.rotation, player.rotation, cameraRotationSpeed*Time.deltaTime);
         //transform.rotation = Quaternion.Slerp(transform.rotation, player.rotation, cameraRotationSpeed*Time.deltaTime);
         //transform.rotation = player.rotation;
         if (usingGyroscope){
         	Vector3 relCoor = infoMotor.relativeCoordinate;
-        	transform.rotation = player.rotation*Quaternion.Euler(extraRotSpeed*-relCoor.x,0f,extraRotSpeed*-relCoor.y);
+            //transform.rotation = player.rotation*Quaternion.Euler(rotationAdaptSpeed*-relCoor.x,0f,rotationAdaptSpeed*-relCoor.y);
+        	transform.rotation = Quaternion.Slerp(transform.rotation, player.rotation*Quaternion.Euler(rotationAdaptSpeed*-relCoor.x,0f,rotationAdaptSpeed*-relCoor.y),Time.deltaTime*rotationAdaptSpeed);
         }
-        transform.rotation = player.rotation*Quaternion.Euler(10,10,0);
-        
+        //transform.rotation = player.rotation*Quaternion.Euler(10,10,0);   //working
+        transform.rotation = Quaternion.Slerp(transform.rotation ,player.rotation,Time.deltaTime*rotationAdaptSpeed);
     }
 
+    public void PlayButtonClicked(){
+        StartCoroutine( Waiter());
+    }
+
+    IEnumerator Waiter(){
+        yield return new WaitForSeconds(0.3f);
+        isPlaying = true;
+    }
+
+    public void GetToShopView(){
+        StartCoroutine(TurningToShopView());
+    }
+
+    public void GetToMenueView(){
+        StartCoroutine(TurningToMenuView());
+    }
+
+    IEnumerator TurningToShopView(){
+        if (cameraTurning) yield break;
+        cameraTurning = true;
+        while (transform.rotation != Quaternion.Euler(0,112.95f,0)){
+            transform.rotation = Quaternion.Slerp(transform.rotation ,Quaternion.Euler(0,112.95f,0),Time.deltaTime*menuRotation);
+            yield return null;
+        }
+        cameraTurning = false;
+    }
+
+
+    IEnumerator TurningToMenuView(){
+        if (cameraTurning) yield break ;
+        cameraTurning = true;
+        while (transform.rotation != Quaternion.Euler(0,0,0)){
+            transform.rotation = Quaternion.Slerp(transform.rotation ,Quaternion.Euler(0,0,0),Time.deltaTime*menuRotation);
+            yield return null;
+        }
+        cameraTurning = false;
+    }
     
 }

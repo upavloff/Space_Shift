@@ -21,7 +21,7 @@ public class PlayerMotor : MonoBehaviour
     
 	public Scrollbar scrollbar;
 
-    
+	public bool isPlaying = false;    
 
     void Start(){
     	controller = GetComponent<CharacterController>();
@@ -38,7 +38,7 @@ public class PlayerMotor : MonoBehaviour
     		Debug.Log(" don't supports Gyroscope or Accelerometer");
     	}
     	guiStyle.fontSize = 30; //change the font size
-		scrollbar.onValueChanged.AddListener((float val) => ScrollbarCallback(val));
+		//scrollbar.onValueChanged.AddListener((float val) => ScrollbarCallback(val));
 
     }
 
@@ -62,6 +62,7 @@ public class PlayerMotor : MonoBehaviour
     }*/
     
     void Update(){
+    	if (!isPlaying) return;
     	if (usingGyroscope){
     		Quaternion relativeRotation = Quaternion.Inverse(initGyroInput)*Input.gyro.attitude;
 
@@ -84,18 +85,19 @@ public class PlayerMotor : MonoBehaviour
 	    transform.position +=  transform.forward * baseSpeed * Time.deltaTime;
     }
 
-    public void SwitchControl(){
+    public void PlayButtonClicked(){
     	Debug.Log("Update Coordinate");
     	if (usingGyroscope){
     		initGyroInput = Input.gyro.attitude;
     	}
+    	isPlaying = true;
     }
 
-    public void ScrollbarCallback(float value)
+    /*public void ScrollbarCallback(float value)
 	{
 	    Debug.Log((value+1)*100);
 	    baseSpeed = (value+1)*100;
-	}
+	}*/
 
 
 	void OnGUI(){

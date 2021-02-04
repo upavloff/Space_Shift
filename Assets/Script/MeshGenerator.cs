@@ -182,11 +182,11 @@ public class MeshGenerator : MonoBehaviour
 
     private void OnDrawGizmos(){
     	Gizmos.color = Color.red;
-    	Gizmos.DrawSphere(pointA, 20f);
+    	Gizmos.DrawSphere(pointA, 15f);
     	Gizmos.color = Color.green;
-    	Gizmos.DrawSphere(pointB, 20f);
+    	Gizmos.DrawSphere(pointB, 15f);
     	Gizmos.color = Color.yellow;
-    	Gizmos.DrawSphere(pointC, 20f);
+    	Gizmos.DrawSphere(pointC, 15f);
 
     	if (vertices==null)
     		return;
