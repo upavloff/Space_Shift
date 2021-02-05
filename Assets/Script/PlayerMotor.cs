@@ -27,7 +27,7 @@ public class PlayerMotor : MonoBehaviour
     	controller = GetComponent<CharacterController>();
     	if (SystemInfo.supportsGyroscope){
     		Input.gyro.enabled = true;
-    		Debug.Log("supports Gyroscope");
+    		//Debug.Log("supports Gyroscope");
     		Screen.orientation = ScreenOrientation.LandscapeLeft;
     		Input.gyro.updateInterval = 0.0167F;
     		usingGyroscope=true;
@@ -35,7 +35,7 @@ public class PlayerMotor : MonoBehaviour
     	}else{
     		rotSpeedHorizontal *= 5f;
     		rotSpeedVertical *= 5f;
-    		Debug.Log(" don't supports Gyroscope or Accelerometer");
+    		//Debug.Log(" don't supports Gyroscope or Accelerometer");
     	}
     	guiStyle.fontSize = 30; //change the font size
 		//scrollbar.onValueChanged.AddListener((float val) => ScrollbarCallback(val));

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class MeshGenerator : MonoBehaviour
 {
@@ -65,6 +66,17 @@ public class MeshGenerator : MonoBehaviour
     void LateUpdate(){
     	if (Vector3.Distance(player.position,pointA)<girth){
     		newMesh();
+    		//keep track of nbMesh pass
+    		AnalyticsResult result = Analytics.CustomEvent(
+    			"MeshPass",
+    			new Dictionnary<string,object>{
+    				{"MeshNumber", nbRepeat-2},
+    				{"MeshGirth", girth}
+    			}
+
+    		);
+    		Debug.Log("Analytics result = "+result);
+    		Debug.Log(" nbrepeat "+nbRepeat);
     	}
     }
 
