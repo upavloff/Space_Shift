@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
+    private Rigidbody rb;
 
     private float baseSpeed = 150.0f;
     private float rotSpeedHorizontal = 5.0f;
@@ -23,8 +24,11 @@ public class PlayerMotor : MonoBehaviour
 
 	public bool isPlaying = false;    
 
+
     void Start(){
     	controller = GetComponent<CharacterController>();
+    	rb = GetComponent<Rigidbody>();
+
     	if (SystemInfo.supportsGyroscope){
     		Input.gyro.enabled = true;
     		//Debug.Log("supports Gyroscope");
@@ -82,7 +86,13 @@ public class PlayerMotor : MonoBehaviour
 	    	transform.Rotate( rotSpeedVertical*Input.GetAxis("Vertical")*0.1f,0f,rotSpeedHorizontal * - Input.GetAxis("Horizontal")*0.1f);
 	    }
 
-	    transform.position +=  transform.forward * baseSpeed * Time.deltaTime;
+	    //transform.position +=  transform.forward * baseSpeed * Time.deltaTime;
+	    controller.Move(transform.forward * baseSpeed * Time.deltaTime);
+	    //rb.AddRelativeForce(transform.forward * baseSpeed /* Time.deltaTime*/);
+	    /*if ( controller.Move(transform.forward * baseSpeed * Time.deltaTime) > 0){
+	   		isPlaying = false;
+	   		StartCoroutine(HandleCollision());
+	    }*/
     }
 
     public void PlayButtonClicked(){
@@ -103,5 +113,40 @@ public class PlayerMotor : MonoBehaviour
 	void OnGUI(){
 		GUI.Label(new Rect(Screen.width-500, 40,200,100),"Speed = "+baseSpeed);
 	}
+
+
+
+	public IEnumerator GetBackInPlace(Vector3 destination, Vector3 before_destination){
+		Debug.Log("destination is "+destination);
+		Vector3 posInit = transform.position;
+		Vector3 after_posInit = transform.position+transform.forward*baseSpeed;
+		Vector3 previousTransform;
+		Vector3 currentDestination;
+		for (float f = 0.05f; f<=1; f=f+0.05f){
+			previousTransform = transform.position;
+			currentDestination = CubicCurve(posInit, after_posInit, before_destination, destination, f);
+			transform.rotation = Quaternion.LookRotation( (transform.position - previousTransform).normalized );
+			yield return new WaitForEndOfFrame();
+		}
+	}
+
+
+	//part to handle the get back in place
+	public Vector3 Lerp( Vector3 a, Vector3 b, float t ){
+		return t*b + (1-t)*a;
+	}
+
+    public Vector3 QuadraticCurve(Vector3 a, Vector3 b, Vector3 c, float t){
+    	Vector3 p0 = Lerp(a, b, t);
+		Vector3 p1 = Lerp(b, c, t);
+		return Lerp(p0,p1, t); 
+    }
+
+    public Vector3 CubicCurve(Vector3 a, Vector3 b, Vector3 c, Vector3 d, float t){
+    	Vector3 p0 = QuadraticCurve(a, b, c, t);
+		Vector3 p1 = QuadraticCurve(b, c, d, t);
+		return Lerp(p0,p1, t); 
+    }
+
 
 }

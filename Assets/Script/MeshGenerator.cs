@@ -8,11 +8,17 @@ public class MeshGenerator : MonoBehaviour
 	public Mesh mesh1;	
 	public Mesh mesh2;	
 
+	public MeshCollider meshCollider1;
+	public MeshCollider meshCollider2;
+
 	public Transform player; 
 
 	Vector3[] vertices;
 	int[] triangles;
 	Color[] colors;
+
+	public Vector3[] centerMeshOld;
+	public Vector3[] centerMeshNew;
 
 	float[] perlinGirthList;
 
@@ -47,17 +53,22 @@ public class MeshGenerator : MonoBehaviour
 
     	mesh1 = new Mesh();
     	transform.GetChild(0).GetComponent<MeshFilter>().mesh = mesh1;
+    	meshCollider1 = transform.GetChild(0).GetComponent<MeshCollider>();
 
     	mesh2 = new Mesh();
     	transform.GetChild(1).GetComponent<MeshFilter>().mesh = mesh2;
+    	meshCollider2 = transform.GetChild(1).GetComponent<MeshCollider>();
+
     	
     	CalculateNewPoint();
     	CreateShape();
-    	UpdateMesh(mesh1);
+    	UpdateMesh(mesh1, meshCollider1);
+
+    	centerMeshOld = (Vector3[]) centerMeshNew.Clone();
 
     	CalculateNewPoint();
     	CreateShape();
-    	UpdateMesh(mesh2);
+    	UpdateMesh(mesh2, meshCollider2);
 
     	//InitFunction(detail);
         
@@ -69,7 +80,7 @@ public class MeshGenerator : MonoBehaviour
     		//keep track of nbMesh pass
     		AnalyticsResult result = Analytics.CustomEvent(
     			"MeshPass",
-    			new Dictionnary<string,object>{
+    			new Dictionary<string,object>{
     				{"MeshNumber", nbRepeat-2},
     				{"MeshGirth", girth}
     			}
@@ -88,6 +99,8 @@ public class MeshGenerator : MonoBehaviour
     	vertices = new Vector3[ (xSize+1) * (zSize+1) ];
     	colors = new Color[(xSize+1) * (zSize+1)];
     	perlinGirthList = new float[(xSize+1) * (zSize+1)];
+    	
+    	centerMeshNew = new Vector3[(xSize+1) * (zSize+1)];
 
 		minPerlinGirth = girth;
 		maxPerlinGirth = 0f;
@@ -119,6 +132,7 @@ public class MeshGenerator : MonoBehaviour
     				PerlinGirth = perlinGirthList[(z+1)*xSize - x + z ]; 
     			}
     			perlinGirthList[index] = PerlinGirth;
+    			centerMeshNew[index] = init1;
     			
     			vertices[index] = init1 + Quaternion.AngleAxis((float)x*360f/(float)xSize,dir) * dirNorm * PerlinGirth;
     			index++;
@@ -170,7 +184,7 @@ public class MeshGenerator : MonoBehaviour
 
     }
 
-    public void UpdateMesh(Mesh mesh){
+    public void UpdateMesh(Mesh mesh, MeshCollider meshCollider){    	
     	mesh.Clear();
 
     	mesh.vertices = vertices;
@@ -178,6 +192,7 @@ public class MeshGenerator : MonoBehaviour
     	mesh.colors = colors;
 
     	mesh.RecalculateNormals();
+    	meshCollider.sharedMesh = mesh;
     }
 
 
@@ -185,11 +200,10 @@ public class MeshGenerator : MonoBehaviour
 		return t*b + (1-t)*a;
 	}
 
-    private Vector3 QuadraticCurve(float t){
+    public Vector3 QuadraticCurve(float t){
     	Vector3 p0 = Lerp(pointA, pointB, t);
 		Vector3 p1 = Lerp(pointB, pointC, t);
 		return Lerp(p0,p1, t); 
-
     }
 
     private void OnDrawGizmos(){
@@ -210,8 +224,12 @@ public class MeshGenerator : MonoBehaviour
     		}else{
     			Gizmos.DrawSphere(vertices[i], 5f);
     		}
-    		//Debug.Log("present"); 
-    		
+    		//Debug.Log("present"); 	
+    	}
+    	Gizmos.color = Color.red;
+    	foreach (Vector3 pos in centerMeshOld){
+    		Gizmos.DrawSphere(pos, 7f);
+
     	}
     }
 
@@ -231,12 +249,13 @@ public class MeshGenerator : MonoBehaviour
     }
 
     public void newMesh(){
+    	centerMeshOld = (Vector3[]) centerMeshNew.Clone();
     	CalculateNewPoint();
     	CreateShape();
     	if (nbRepeat%2!=0){
-    		UpdateMesh(mesh1);
+    		UpdateMesh(mesh1, meshCollider1);
     	}else{
-    		UpdateMesh(mesh2);
+    		UpdateMesh(mesh2, meshCollider2);
     	}
     }
 }

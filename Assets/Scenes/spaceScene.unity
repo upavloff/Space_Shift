@@ -19797,7 +19797,7 @@ GameObject:
   - component: {fileID: 1094935793}
   m_Layer: 0
   m_Name: Mesh1
-  m_TagString: Untagged
+  m_TagString: Mesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25135,6 +25135,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1877193888}
     m_Modifications:
+    - target: {fileID: 939548966, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
+      propertyPath: healthCollisionScript
+      value: 
+      objectReference: {fileID: 1877193889}
+    - target: {fileID: 939548966, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
+      propertyPath: motorScript
+      value: 
+      objectReference: {fileID: 1877193890}
     - target: {fileID: 1510364872509504, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
       propertyPath: m_Name
       value: StarSparrow1
@@ -25182,75 +25190,6 @@ PrefabInstance:
     - target: {fileID: 4433942057210488, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959394447520530, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.266
-      objectReference: {fileID: 0}
-    - target: {fileID: 23649099192709106, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 3574d5733ac60b941b175932e0a1aa2e, type: 2}
-    - target: {fileID: 65722035265767440, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 3.3809462
-      objectReference: {fileID: 0}
-    - target: {fileID: 65722035265767440, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.019700766
-      objectReference: {fileID: 0}
-    - target: {fileID: 65722035265767440, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Center.z
-      value: -0.20784259
-      objectReference: {fileID: 0}
-    - target: {fileID: 65722035265767440, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.8394015
-      objectReference: {fileID: 0}
-    - target: {fileID: 65767838192354502, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 3.2250419
-      objectReference: {fileID: 0}
-    - target: {fileID: 65767838192354502, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Center.y
-      value: 0.04719852
-      objectReference: {fileID: 0}
-    - target: {fileID: 65767838192354502, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.11252093
-      objectReference: {fileID: 0}
-    - target: {fileID: 65767838192354502, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 0.89439714
-      objectReference: {fileID: 0}
-    - target: {fileID: 65861728141062150, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Size.z
-      value: 8.061991
-      objectReference: {fileID: 0}
-    - target: {fileID: 65861728141062150, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Center.y
-      value: -0.011684418
-      objectReference: {fileID: 0}
-    - target: {fileID: 65861728141062150, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0.4690055
-      objectReference: {fileID: 0}
-    - target: {fileID: 65861728141062150, guid: f805c7b2f982faf43833878e4f22ae2a,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.2132446
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
@@ -34209,13 +34148,28 @@ GameObject:
   - component: {fileID: 1871270695}
   - component: {fileID: 1871270694}
   - component: {fileID: 1871270693}
+  - component: {fileID: 1871270692}
   m_Layer: 0
   m_Name: Mesh2
-  m_TagString: Untagged
+  m_TagString: Mesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!64 &1871270692
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1871270691}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!23 &1871270693
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34519,9 +34473,10 @@ GameObject:
   - component: {fileID: 1877193888}
   - component: {fileID: 1877193890}
   - component: {fileID: 1877193891}
+  - component: {fileID: 1877193889}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34543,6 +34498,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1877193889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877193887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420239ef5c9440b88805a85a80ed2df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshScript: {fileID: 2011353096}
+  motorScript: {fileID: 0}
+  renderer: {fileID: 0}
+  maxHealth: 3
+  currentHealth: 0
+  distToRecover: 10
+  timeColorChange: 0.3
 --- !u!114 &1877193890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34570,8 +34544,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1
+  m_Radius: 1
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -37019,7 +36993,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh1: {fileID: 0}
   mesh2: {fileID: 0}
+  meshCollider1: {fileID: 0}
+  meshCollider2: {fileID: 0}
   player: {fileID: 1877193888}
+  centerMeshOld: []
+  centerMeshNew: []
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.3679397, b: 0.019607842, a: 1}
