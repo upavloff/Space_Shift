@@ -8,15 +8,22 @@ public class HealthCollision : MonoBehaviour
 
 	public PlayerMotor motorScript;
 
+	public FollowPlayer followScript;
+
 	public MeshRenderer renderer;
 
-	public int maxHealth = 3;
-	public int currentHealth ;
+	public RewindTime rewindScript;
+
+
+	private int maxHealth = 4;
+	private int currentHealth ;
 
 	Vector3 destination = new Vector3(0,0,0);
 	Vector3 supposedDestination = new Vector3(0,0,0);
 
-	private int distToRecover = 200;
+	private int distToRecover = 300;
+	private int timeToRecover = 12;
+
 	public float timeColorChange = .3f;
 
     // Start is called before the first frame update
@@ -24,50 +31,24 @@ public class HealthCollision : MonoBehaviour
     {
 	    renderer = transform.GetChild(0).GetComponent<MeshRenderer>();    
 	    motorScript = transform.GetComponent<PlayerMotor>();
+	    rewindScript = transform.GetComponent<RewindTime>();
 	    currentHealth = maxHealth;
     }
 
 
-    public IEnumerator HandleCollision(){
+    public void HandleCollision(){
     	currentHealth --;
-    	if (currentHealth<=0){
+    	Debug.Log("currentHealth "+currentHealth);
+    	motorScript.isPlaying = false;
+		followScript.isPlaying = false;
+    	if (currentHealth<0){
     		Die();
-    		yield break;
+    		//yield break;
+    		return;
     	}
-    	float dist = 300000f;
-    	//Vector3 destination = new Vector3();
-    	Vector3 before_destination = new Vector3();
-    	Vector3[] centerMeshOld = meshScript.centerMeshOld;
-    	for (int i=1; i<centerMeshOld.Length;i++){
-    		float tmp = Vector3.Distance(transform.position,centerMeshOld[i]);
-    		if (tmp <= dist){
-    			dist = tmp;
-    			//if point destination exceed oldmesh length go on the new one
-    			supposedDestination = centerMeshOld[i];
-    			if (i+distToRecover >= centerMeshOld.Length){
-	    			destination = meshScript.centerMeshNew[i+distToRecover-centerMeshOld.Length]; 
-	    			Debug.Log("blllluhhhhh");
-    			}else{
-    				destination = centerMeshOld[i+distToRecover];
-    			}
-    			//same thing for the point just before
-    			if (i+distToRecover-1 >= centerMeshOld.Length){
-    				before_destination = centerMeshOld[i-1+distToRecover-centerMeshOld.Length];
-    			}else{
-    				before_destination = centerMeshOld[i-1+distToRecover];
-    			}
-    		}else{
-    			break;
-    		}
-    	}
-    	StartCoroutine(motorScript.GetBackInPlace(destination, before_destination));
-    	for (int i=0; i<8; i++){
-			renderer.material.color = Color.red;
-			yield return new WaitForSeconds(timeColorChange);
-			renderer.material.color = Color.white;
-			yield return new WaitForSeconds(timeColorChange);
-    	}
-
+    	rewindScript.StartRewind();
+    	motorScript.isPlaying = true;
+		followScript.isPlaying = true;
 	}
 
 	void Die(){

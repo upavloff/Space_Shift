@@ -25143,6 +25143,10 @@ PrefabInstance:
       propertyPath: motorScript
       value: 
       objectReference: {fileID: 1877193890}
+    - target: {fileID: 939548966, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
+      propertyPath: followScript
+      value: 
+      objectReference: {fileID: 1630993311}
     - target: {fileID: 1510364872509504, guid: f805c7b2f982faf43833878e4f22ae2a, type: 3}
       propertyPath: m_Name
       value: StarSparrow1
@@ -29726,6 +29730,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609662935}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1610306957
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1610306959}
+  - component: {fileID: 1610306958}
+  m_Layer: 0
+  m_Name: PostProcessing
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1610306958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610306957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 9409359cbdc322f7ca4717eaf7e50b94, type: 2}
+--- !u!4 &1610306959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610306957}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1617936486
 GameObject:
   m_ObjectHideFlags: 0
@@ -30144,6 +30196,7 @@ MonoBehaviour:
   menuRotation: 5
   isPlaying: 0
   cameraTurning: 0
+  hurtMode: 0
 --- !u!114 &1630993312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30166,7 +30219,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -34474,6 +34527,7 @@ GameObject:
   - component: {fileID: 1877193890}
   - component: {fileID: 1877193891}
   - component: {fileID: 1877193889}
+  - component: {fileID: 1877193892}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -34512,10 +34566,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   meshScript: {fileID: 2011353096}
   motorScript: {fileID: 0}
+  followScript: {fileID: 1630993311}
   renderer: {fileID: 0}
+  rewindScript: {fileID: 0}
   maxHealth: 3
   currentHealth: 0
-  distToRecover: 10
   timeColorChange: 0.3
 --- !u!114 &1877193890
 MonoBehaviour:
@@ -34551,6 +34606,21 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1877193892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1877193887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2ea44e6627d44292a3f9c563f835961, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  recordTime: 5
+  cameraTransform: {fileID: 1630993310}
+  postProcessing: {fileID: 1610306957}
 --- !u!1 &1887495339
 GameObject:
   m_ObjectHideFlags: 0
@@ -36974,7 +37044,7 @@ GameObject:
   - component: {fileID: 2011353096}
   m_Layer: 0
   m_Name: MeshGenerator
-  m_TagString: Untagged
+  m_TagString: Mesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

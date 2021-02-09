@@ -7,7 +7,9 @@ public class ShipCollider : MonoBehaviour
 	public Rigidbody rb;
 	public HealthCollision healthCollisionScript;
 	public PlayerMotor motorScript;
+	public FollowPlayer followScript;
 
+	private bool invincible = false;
 
 	void Start(){
 		rb = transform.GetComponent<Rigidbody>();
@@ -16,9 +18,14 @@ public class ShipCollider : MonoBehaviour
 	}
 
     void OnTriggerEnter(Collider other){
-    	if (other.tag == "tagPlayer" || !motorScript.isPlaying ) return;
-    	Debug.Log("other tag"+other.tag);
-		motorScript.isPlaying = false;
-    	StartCoroutine( healthCollisionScript.HandleCollision() );
+    	if (invincible || other.tag == "Player") return;
+    	invincible = true;
+    	Debug.Log("HandleCollision a cause de "+other.tag);
+    	healthCollisionScript.HandleCollision();
+    	Invoke("Vulnerability", 3.2f);
+    }
+
+    void Vulnerability(){
+    	invincible = false;
     }
 }

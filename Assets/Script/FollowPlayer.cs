@@ -23,6 +23,7 @@ public class FollowPlayer : MonoBehaviour
     public bool isPlaying = false;   
     public bool cameraTurning = false;  
 
+    public bool hurtMode = false;
  
 	void Start(){
 		if (SystemInfo.supportsGyroscope){
@@ -37,6 +38,11 @@ public class FollowPlayer : MonoBehaviour
     {
         if (!isPlaying) return;
         transform.position = Vector3.Lerp(transform.position ,cameraTarget.position,Time.deltaTime*positionAdaptSpeed);
+        if (hurtMode){
+            //transform.rotation = Quaternion.LookRotation(player.position - transform.position);
+            transform.LookAt(player.position);
+            return;
+        }
         //transform.position =Vector3.Scale( Vector3.Slerp(transform.position ,cameraTarget.position,Time.deltaTime*positionAdaptSpeed),Vector3.up)+new Vector3(cameraTarget.position.x,0,cameraTarget.position.z);
         //transform.position = player.position + offset;
         //transform.rotation = Quaternion.Slerp(transform.rotation, player.rotation, cameraRotationSpeed*Time.deltaTime);

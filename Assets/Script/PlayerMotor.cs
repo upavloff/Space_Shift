@@ -25,6 +25,8 @@ public class PlayerMotor : MonoBehaviour
 	public bool isPlaying = false;    
 
 
+
+
     void Start(){
     	controller = GetComponent<CharacterController>();
     	rb = GetComponent<Rigidbody>();
@@ -116,19 +118,22 @@ public class PlayerMotor : MonoBehaviour
 
 
 
-	public IEnumerator GetBackInPlace(Vector3 destination, Vector3 before_destination){
+	/*public IEnumerator GetBackInPlace(Vector3 destination, Vector3 before_destination){
 		Debug.Log("destination is "+destination);
 		Vector3 posInit = transform.position;
 		Vector3 after_posInit = transform.position+transform.forward*baseSpeed;
 		Vector3 previousTransform;
-		Vector3 currentDestination;
-		for (float f = 0.05f; f<=1; f=f+0.05f){
+		//for (float f = 0.05f; f<=1; f=f+0.05f){
+		float tParam = 0f;
+		while (tParam <1 ){
+			tParam += Time.deltaTime * 0.5f;
 			previousTransform = transform.position;
-			currentDestination = CubicCurve(posInit, after_posInit, before_destination, destination, f);
-			transform.rotation = Quaternion.LookRotation( (transform.position - previousTransform).normalized );
+			transform.position = CubicCurve(posInit, after_posInit, before_destination, destination, tParam);
+			transform.rotation = Quaternion.LookRotation( (CubicCurve(posInit, after_posInit, before_destination, destination, tParam+0.03f) - transform.position) );
 			yield return new WaitForEndOfFrame();
 		}
-	}
+		isPlaying = true;
+	}*/
 
 
 	//part to handle the get back in place

@@ -2,8 +2,10 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - FollowPlayer
+    - HealthCollision
     - MeshGenerator
     - PlayerMotor
+    - ShipCollider
     Unity.RenderPipelines.Core.Runtime.dll:
     - UnityEngine.Rendering.UI.DebugUIHandlerBitField
     - UnityEngine.Rendering.UI.DebugUIHandlerButton
@@ -86,11 +88,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 54
+      Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -113,77 +119,81 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11422}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11580}
     - Class: 114
-      Script: {instanceID: 11680}
+      Script: {instanceID: 11688}
     - Class: 114
-      Script: {instanceID: 11702}
+      Script: {instanceID: 11710}
     - Class: 114
-      Script: {instanceID: 11884}
+      Script: {instanceID: 11892}
     - Class: 114
-      Script: {instanceID: 11930}
+      Script: {instanceID: 11938}
     - Class: 114
-      Script: {instanceID: 12100}
+      Script: {instanceID: 12108}
     - Class: 114
-      Script: {instanceID: 12404}
+      Script: {instanceID: 12412}
     - Class: 114
-      Script: {instanceID: 12448}
+      Script: {instanceID: 12456}
     - Class: 114
-      Script: {instanceID: 12508}
+      Script: {instanceID: 12516}
     - Class: 114
-      Script: {instanceID: 12626}
+      Script: {instanceID: 12634}
     - Class: 114
-      Script: {instanceID: 12738}
+      Script: {instanceID: 12746}
     - Class: 114
-      Script: {instanceID: 12844}
+      Script: {instanceID: 12852}
     - Class: 114
-      Script: {instanceID: 12952}
+      Script: {instanceID: 12958}
     - Class: 114
-      Script: {instanceID: 13004}
+      Script: {instanceID: 13010}
     - Class: 114
-      Script: {instanceID: 13060}
+      Script: {instanceID: 13066}
     - Class: 114
-      Script: {instanceID: 13164}
+      Script: {instanceID: 13170}
     - Class: 114
-      Script: {instanceID: 13464}
+      Script: {instanceID: 13470}
     - Class: 114
-      Script: {instanceID: 13744}
+      Script: {instanceID: 13750}
     - Class: 114
-      Script: {instanceID: 13806}
+      Script: {instanceID: 13812}
     - Class: 114
-      Script: {instanceID: 13826}
+      Script: {instanceID: 13832}
     - Class: 114
-      Script: {instanceID: 13934}
+      Script: {instanceID: 13940}
     - Class: 114
-      Script: {instanceID: 13960}
+      Script: {instanceID: 13966}
     - Class: 114
-      Script: {instanceID: 13988}
+      Script: {instanceID: 13994}
     - Class: 114
-      Script: {instanceID: 13996}
+      Script: {instanceID: 14002}
     - Class: 114
-      Script: {instanceID: 14316}
+      Script: {instanceID: 14322}
     - Class: 114
-      Script: {instanceID: 14334}
+      Script: {instanceID: 14340}
     - Class: 114
-      Script: {instanceID: 14384}
+      Script: {instanceID: 14390}
     - Class: 114
-      Script: {instanceID: 14614}
+      Script: {instanceID: 14620}
     - Class: 114
-      Script: {instanceID: 14800}
+      Script: {instanceID: 14806}
     - Class: 114
-      Script: {instanceID: 14848}
+      Script: {instanceID: 14854}
     - Class: 114
-      Script: {instanceID: 15048}
+      Script: {instanceID: 14976}
     - Class: 114
-      Script: {instanceID: 15050}
+      Script: {instanceID: 15056}
     - Class: 114
-      Script: {instanceID: 15078}
+      Script: {instanceID: 15058}
     - Class: 114
-      Script: {instanceID: 15102}
+      Script: {instanceID: 15086}
     - Class: 114
-      Script: {instanceID: 15222}
+      Script: {instanceID: 15110}
     - Class: 114
-      Script: {instanceID: 15228}
+      Script: {instanceID: 15224}
+    - Class: 114
+      Script: {instanceID: 15232}
+    - Class: 114
+      Script: {instanceID: 15238}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -265,6 +275,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: CanvasScaler
+  - hash:
+      serializedVersion: 2
+      Hash: 723614de6aa8ab77c2d95f1e7d3c733b
+    assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
+    namespaceName: UnityEngine.Rendering.Universal
+    className: UniversalRenderPipelineAsset
   - hash:
       serializedVersion: 2
       Hash: a1f19ad47d3094e235f21b74dfc423a8
@@ -651,7 +667,7 @@ ScriptsOnlyBuild:
     className: FilmGrain
   - hash:
       serializedVersion: 2
-      Hash: 15314a885709c8867d8a6de4c47e5991
+      Hash: 02a406b4af2ea8cbe2c245eb262087af
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MeshGenerator
@@ -661,12 +677,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
     className: ChromaticAberration
-  - hash:
-      serializedVersion: 2
-      Hash: 723614de6aa8ab77c2d95f1e7d3c733b
-    assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
-    namespaceName: UnityEngine.Rendering.Universal
-    className: UniversalRenderPipelineAsset
   - hash:
       serializedVersion: 2
       Hash: 5e1eefcd5106de6c2e85908a3b2d3f04
@@ -909,7 +919,7 @@ ScriptsOnlyBuild:
     className: VolumeComponent
   - hash:
       serializedVersion: 2
-      Hash: e0ab477ffb728759c61f75b0495c4181
+      Hash: 1a46e01b5899992dff0b2b10f0510570
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMotor
@@ -1029,7 +1039,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerVector2
   - hash:
       serializedVersion: 2
-      Hash: 7ada27f08c5e0797fb5d9d201d0b6c8d
+      Hash: ad5d10919be9cbcebb4c2c2bf8dcf3d9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FollowPlayer
@@ -1167,6 +1177,12 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
+      Hash: 2672511781f48ff8a6851cc39870952d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ShipCollider
+  - hash:
+      serializedVersion: 2
       Hash: 5dea360fb0b147724ac344e6f399c2f3
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -1261,6 +1277,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
     className: WhiteBalance
+  - hash:
+      serializedVersion: 2
+      Hash: 72f2766e9262007bd50fa9372ee2ded4
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HealthCollision
   - hash:
       serializedVersion: 2
       Hash: 2388eb9e99b86b3813e7b6dbfe4b3e0c
