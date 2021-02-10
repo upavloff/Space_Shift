@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - HealthCollision
     - MeshGenerator
     - PlayerMotor
+    - RewindTime
     - ShipCollider
     Unity.RenderPipelines.Core.Runtime.dll:
     - UnityEngine.Rendering.UI.DebugUIHandlerBitField
@@ -32,9 +33,14 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.UI.DebugUIHandlerVector3
     - UnityEngine.Rendering.UI.DebugUIHandlerVector4
     - UnityEngine.Rendering.UI.UIFoldout
+    - UnityEngine.Rendering.Volume
+    - UnityEngine.Rendering.VolumeProfile
     Unity.RenderPipelines.Universal.Editor.dll:
     - UnityEditor.Rendering.Universal.UniversalProjectSettings
     Unity.RenderPipelines.Universal.Runtime.dll:
+    - UnityEngine.Rendering.Universal.Bloom
+    - UnityEngine.Rendering.Universal.ChromaticAberration
+    - UnityEngine.Rendering.Universal.ColorCurves
     - UnityEngine.Rendering.Universal.ForwardRendererData
     - UnityEngine.Rendering.Universal.PostProcessData
     - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
@@ -119,37 +125,49 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11422}
     - Class: 114
-      Script: {instanceID: 11580}
+      Script: {instanceID: 11520}
     - Class: 114
-      Script: {instanceID: 11688}
+      Script: {instanceID: 11578}
     - Class: 114
-      Script: {instanceID: 11710}
+      Script: {instanceID: 11686}
     - Class: 114
-      Script: {instanceID: 11892}
+      Script: {instanceID: 11708}
     - Class: 114
-      Script: {instanceID: 11938}
+      Script: {instanceID: 11748}
     - Class: 114
-      Script: {instanceID: 12108}
+      Script: {instanceID: 11890}
     - Class: 114
-      Script: {instanceID: 12412}
+      Script: {instanceID: 11936}
     - Class: 114
-      Script: {instanceID: 12456}
+      Script: {instanceID: 12026}
     - Class: 114
-      Script: {instanceID: 12516}
+      Script: {instanceID: 12106}
     - Class: 114
-      Script: {instanceID: 12634}
+      Script: {instanceID: 12266}
     - Class: 114
-      Script: {instanceID: 12746}
+      Script: {instanceID: 12410}
     - Class: 114
-      Script: {instanceID: 12852}
+      Script: {instanceID: 12454}
     - Class: 114
-      Script: {instanceID: 12958}
+      Script: {instanceID: 12514}
     - Class: 114
-      Script: {instanceID: 13010}
+      Script: {instanceID: 12632}
     - Class: 114
-      Script: {instanceID: 13066}
+      Script: {instanceID: 12744}
+    - Class: 114
+      Script: {instanceID: 12850}
+    - Class: 114
+      Script: {instanceID: 12956}
+    - Class: 114
+      Script: {instanceID: 13008}
+    - Class: 114
+      Script: {instanceID: 13064}
+    - Class: 114
+      Script: {instanceID: 13096}
     - Class: 114
       Script: {instanceID: 13170}
+    - Class: 114
+      Script: {instanceID: 13418}
     - Class: 114
       Script: {instanceID: 13470}
     - Class: 114
@@ -167,33 +185,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 14002}
     - Class: 114
-      Script: {instanceID: 14322}
+      Script: {instanceID: 14324}
     - Class: 114
-      Script: {instanceID: 14340}
+      Script: {instanceID: 14342}
     - Class: 114
-      Script: {instanceID: 14390}
+      Script: {instanceID: 14392}
     - Class: 114
-      Script: {instanceID: 14620}
+      Script: {instanceID: 14622}
     - Class: 114
-      Script: {instanceID: 14806}
+      Script: {instanceID: 14808}
     - Class: 114
-      Script: {instanceID: 14854}
+      Script: {instanceID: 14856}
     - Class: 114
-      Script: {instanceID: 14976}
-    - Class: 114
-      Script: {instanceID: 15056}
+      Script: {instanceID: 14978}
     - Class: 114
       Script: {instanceID: 15058}
     - Class: 114
-      Script: {instanceID: 15086}
+      Script: {instanceID: 15060}
     - Class: 114
-      Script: {instanceID: 15110}
+      Script: {instanceID: 15088}
     - Class: 114
-      Script: {instanceID: 15224}
+      Script: {instanceID: 15112}
     - Class: 114
-      Script: {instanceID: 15232}
+      Script: {instanceID: 15226}
     - Class: 114
-      Script: {instanceID: 15238}
+      Script: {instanceID: 15234}
+    - Class: 114
+      Script: {instanceID: 15240}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -715,6 +733,12 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
+      Hash: 3b5fa979dfa71ab095118166f69c74f0
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RewindTime
+  - hash:
+      serializedVersion: 2
       Hash: c88c4199b288356ec3eb2f0d85abc619
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.CrossPlatformInput
@@ -1039,7 +1063,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerVector2
   - hash:
       serializedVersion: 2
-      Hash: ad5d10919be9cbcebb4c2c2bf8dcf3d9
+      Hash: ecaef529b44097cae190ff42ae98e8c8
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FollowPlayer
@@ -1177,7 +1201,7 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
-      Hash: 2672511781f48ff8a6851cc39870952d
+      Hash: 730a251a96114c0f828739aa4a4de582
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ShipCollider
@@ -1279,7 +1303,7 @@ ScriptsOnlyBuild:
     className: WhiteBalance
   - hash:
       serializedVersion: 2
-      Hash: 72f2766e9262007bd50fa9372ee2ded4
+      Hash: 8935bcb2cd5a09ac74b4a89449a83245
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HealthCollision
