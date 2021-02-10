@@ -24,6 +24,9 @@ public class FollowPlayer : MonoBehaviour
     public bool cameraTurning = false;  
 
     public bool hurtMode = false;
+
+    public Vector3 initPosition;
+    public Quaternion initRotation;
  
 	void Start(){
 		if (SystemInfo.supportsGyroscope){
@@ -31,6 +34,9 @@ public class FollowPlayer : MonoBehaviour
 		}
 		guiStyle.fontSize = 30;
 		infoMotor = player.GetComponent<PlayerMotor>();
+
+        initPosition = transform.position;
+        initRotation = transform.rotation;
 	}
 
     // Update is called once per frame
@@ -95,4 +101,8 @@ public class FollowPlayer : MonoBehaviour
         cameraTurning = false;
     }
     
+    public void Reset(){
+        transform.position = initPosition;
+        transform.rotation = initRotation;
+    }
 }

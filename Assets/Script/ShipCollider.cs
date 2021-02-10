@@ -6,8 +6,7 @@ public class ShipCollider : MonoBehaviour
 {
 	public Rigidbody rb;
 	public HealthCollision healthCollisionScript;
-	public PlayerMotor motorScript;
-	public FollowPlayer followScript;
+	public RewindTime rewindScript;
 
 	private bool invincible = false;
 
@@ -22,7 +21,7 @@ public class ShipCollider : MonoBehaviour
     	invincible = true;
     	Debug.Log("HandleCollision a cause de "+other.tag);
     	healthCollisionScript.HandleCollision();
-    	Invoke("Vulnerability", 3.2f);
+    	Invoke("Vulnerability", rewindScript.recordTime);
     }
 
     void Vulnerability(){

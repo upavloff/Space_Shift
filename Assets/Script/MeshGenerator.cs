@@ -41,9 +41,15 @@ public class MeshGenerator : MonoBehaviour
 
 	private int nbRepeat = 0;
 
-	public Vector3 pointA = new Vector3(0,3,-4);
-	public Vector3 pointB = new Vector3(0,2,-2);
-	public Vector3 pointC = new Vector3(0,1,0);
+	private Vector3 initA = new Vector3(0,3,-4);
+	private Vector3 initB = new Vector3(0,2,-2);
+	private Vector3 initC = new Vector3(0,1,0);
+
+	public Vector3 pointA;
+	public Vector3 pointB;
+	public Vector3 pointC;
+
+	public float DistPlayer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +65,16 @@ public class MeshGenerator : MonoBehaviour
     	transform.GetChild(1).GetComponent<MeshFilter>().mesh = mesh2;
     	meshCollider2 = transform.GetChild(1).GetComponent<MeshCollider>();
 
+    	InitialiseMesh();
+
+    	//InitFunction(detail);
+        
+    }
+
+    public void InitialiseMesh(){
+    	pointA = initA;
+    	pointB = initB;
+    	pointC = initC;
     	
     	CalculateNewPoint();
     	CreateShape();
@@ -69,12 +85,14 @@ public class MeshGenerator : MonoBehaviour
     	CalculateNewPoint();
     	CreateShape();
     	UpdateMesh(mesh2, meshCollider2);
-
-    	//InitFunction(detail);
-        
     }
 
-    void LateUpdate(){
+    void FixedUpdate(){
+    	Vector3 closestPoint = meshCollider1.ClosestPoint(player.position);
+    	DistPlayer = Vector3.Distance(closestPoint, player.position);
+    }
+
+    void LateUpdate(){    	
     	if (Vector3.Distance(player.position,pointA)<girth){
     		newMesh();
     		//keep track of nbMesh pass
@@ -125,9 +143,12 @@ public class MeshGenerator : MonoBehaviour
     		//index++;
     		for (int x=0; x<=xSize; x++)
     		{
-    			float PerlinGirth;
-    			if (x<=xSize/2){
-					PerlinGirth = girth - 10*Mathf.PerlinNoise(smooth*x+orgXrand/2,smooth*z+orgZrand/2) - 10*Mathf.PerlinNoise(x+orgXrand,z+orgZrand) -(Random.Range(0f,1f)>0.7f ? 130f : 200f)*(Random.Range(0f,1f)>0.99f ? 1 : 0);
+    			float PerlinGirth = 0f;
+    			//if (x<=xSize/2){
+    			if (x<=xSize-5){	//if the 5 last info copy the begining for a smooth circle
+					PerlinGirth = girth - 10*Mathf.PerlinNoise(smooth*x+orgXrand/2,smooth*z+orgZrand/2) - 10*Mathf.PerlinNoise(x+orgXrand,z+orgZrand);
+					//add some pikes in the tunel
+					if (z>1 && z<zSize-1) PerlinGirth -=(Random.Range(0f,1f)>0.7f ? 130f : 200f)*(Random.Range(0f,1f)>0.99f ? 1 : 0);
     			}else{
     				PerlinGirth = perlinGirthList[(z+1)*xSize - x + z ]; 
     			}
@@ -258,4 +279,8 @@ public class MeshGenerator : MonoBehaviour
     		UpdateMesh(mesh2, meshCollider2);
     	}
     }
+
+    void OnGUI(){
+		GUI.Label(new Rect(Screen.width-500, 80,200,100),"DistPlayer = "+DistPlayer);
+	}
 }

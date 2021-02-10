@@ -5,10 +5,8 @@ using UnityEngine;
 public class HealthCollision : MonoBehaviour
 {
 
-	public MeshGenerator meshScript;
-
 	public PlayerMotor motorScript;
-
+	public MeshGenerator meshScript;
 	public FollowPlayer followScript;
 
 	public MeshRenderer renderer;
@@ -18,17 +16,10 @@ public class HealthCollision : MonoBehaviour
 	public GameObject life;
 	List<GameObject> lifeElements = new List<GameObject>();
 
+	public GameObject gameOver;
 
-	private int maxHealth = 2;
+	private int maxHealth = 3;
 	private int currentHealth ;
-
-	Vector3 destination = new Vector3(0,0,0);
-	Vector3 supposedDestination = new Vector3(0,0,0);
-
-	private int distToRecover = 300;
-	private int timeToRecover = 12;
-
-	public float timeColorChange = .3f;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +30,7 @@ public class HealthCollision : MonoBehaviour
 	    currentHealth = maxHealth;
 	    lifeElements.Add(life);
 	    for (int i=1; i<maxHealth; i++){
-	    	GameObject tmpLife = Instantiate(life, life.transform.parent.transform, true);
+	    	GameObject tmpLife = Instantiate(life, life.transform /*.parent.transform*/, true);
 	    	tmpLife.transform.position += Vector3.right * i * 2f * ((RectTransform)tmpLife.transform).rect.width;
 	    	lifeElements.Add( tmpLife );
 
@@ -65,20 +56,44 @@ public class HealthCollision : MonoBehaviour
 
 	void Die(){
 		Debug.Log("you ded");
-
+		gameOver.SetActive(true);
+		StartCoroutine(CloseGameOver());
+		motorScript.Reset();
+		followScript.Reset();
+		meshScript.InitialiseMesh();
+		currentHealth = maxHealth;
+		foreach (GameObject heart in lifeElements){
+			heart.transform.GetChild(1).gameObject.SetActive(true);
+		}
+		life.SetActive(false);
 		//this.enabled = false;
+
+		//handle analytics
 	}
 
     void OnGUI(){
 		GUI.Label(new Rect(Screen.width-500, 60,200,100),"currentHealth = "+currentHealth);
 	}
 
-    private void OnDrawGizmos(){
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawSphere(destination, 12f);
-		Gizmos.color = Color.green;
-		Gizmos.DrawSphere(supposedDestination, 12f);
-		
+
+	IEnumerator CloseGameOver(){
+		Vector3 initPos = gameOver.transform.position;
+		yield return new WaitForSeconds(1f);
+		float i = 0;
+		while(i<Screen.height){
+			i+=Time.deltaTime*4f/*vitesse de descente*/;
+			gameOver.transform.position += Vector3.down * i;
+			yield return new WaitForEndOfFrame(); 
+		}
+		gameOver.SetActive(false);
+		gameOver.transform.position = initPos;
 	}
 
+	public void OnPlay(){
+		life.SetActive(true);
+		for (int i = 0; i < life.transform.GetChildCount(); ++i)
+		{
+		    life.transform.GetChild(i).gameObject.SetActive(true);
+		}
+	}
 }

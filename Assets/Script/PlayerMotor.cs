@@ -24,13 +24,13 @@ public class PlayerMotor : MonoBehaviour
 
 	public bool isPlaying = false;    
 
-
-
+	public Vector3 initPosition;
+    public Quaternion initRotation;
 
     void Start(){
     	controller = GetComponent<CharacterController>();
     	rb = GetComponent<Rigidbody>();
-
+    	
     	if (SystemInfo.supportsGyroscope){
     		Input.gyro.enabled = true;
     		//Debug.Log("supports Gyroscope");
@@ -45,7 +45,8 @@ public class PlayerMotor : MonoBehaviour
     	}
     	guiStyle.fontSize = 30; //change the font size
 		//scrollbar.onValueChanged.AddListener((float val) => ScrollbarCallback(val));
-
+    	initPosition = transform.position;
+    	initRotation = transform.rotation;
     }
 
     /*
@@ -153,5 +154,9 @@ public class PlayerMotor : MonoBehaviour
 		return Lerp(p0,p1, t); 
     }
 
+    public void Reset(){
+    	transform.position = initPosition;
+    	transform.rotation = initRotation;
+    }
 
 }

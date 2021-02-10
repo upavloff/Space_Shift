@@ -6,7 +6,7 @@ public class RewindTime : MonoBehaviour
 {
 	bool isRewinding = false;
 
-	public float recordTime = 1.5f;
+	public float recordTime = 2f;
 
 	List<PointInTime> pointsInTime;
 
