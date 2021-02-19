@@ -35067,6 +35067,7 @@ MonoBehaviour:
   recordTime: 2
   cameraTransform: {fileID: 1630993310}
   postProcessing: {fileID: 1610306957}
+  healthScript: {fileID: 0}
 --- !u!1 &1887495339
 GameObject:
   m_ObjectHideFlags: 0
@@ -37549,8 +37550,7 @@ MonoBehaviour:
   meshCollider1: {fileID: 0}
   meshCollider2: {fileID: 0}
   player: {fileID: 1877193888}
-  centerMeshOld: []
-  centerMeshNew: []
+  motorScript: {fileID: 0}
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.3679397, b: 0.019607842, a: 1}
@@ -37586,6 +37586,9 @@ MonoBehaviour:
   pointB: {x: 0, y: 2, z: -2}
   pointC: {x: 0, y: 1, z: 0}
   DistPlayer: 0
+  distMean: 1
+  meanLength: 1
+  closestPoint: {x: 0, y: 0, z: 0}
 --- !u!4 &2011353098
 Transform:
   m_ObjectHideFlags: 0

@@ -18,7 +18,7 @@ public class HealthCollision : MonoBehaviour
 
 	public GameObject gameOver;
 
-	private int maxHealth = 3;
+	private int maxHealth = 10;
 	private int currentHealth ;
 
     // Start is called before the first frame update
@@ -50,8 +50,6 @@ public class HealthCollision : MonoBehaviour
     	//turn heart to gray
 		lifeElements[currentHealth].transform.GetChild(1).gameObject.SetActive(false);
     	rewindScript.StartRewind();
-    	motorScript.isPlaying = true;
-		followScript.isPlaying = true;
 	}
 
 	void Die(){
@@ -95,5 +93,11 @@ public class HealthCollision : MonoBehaviour
 		{
 		    life.transform.GetChild(i).gameObject.SetActive(true);
 		}
+	}
+
+	public void endRewind(){
+		motorScript.isPlaying = true;
+		followScript.isPlaying = true;
+		meshScript.obstacleIsRegistered = false;
 	}
 }

@@ -14,10 +14,13 @@ public class RewindTime : MonoBehaviour
 
 	public GameObject postProcessing;
 
+	public HealthCollision healthScript;
+
     // Start is called before the first frame update
     void Start()
     {
         pointsInTime = new List<PointInTime>();
+        healthScript = transform.GetComponent<HealthCollision>();
     }
 
     void FixedUpdate ()
@@ -67,5 +70,6 @@ public class RewindTime : MonoBehaviour
 	{
 		isRewinding = false;
 		postProcessing.SetActive(false);
+		healthScript.endRewind();
 	}
 }
