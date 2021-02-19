@@ -62,6 +62,10 @@ public class MeshGenerator : MonoBehaviour
 	private int meanLength = 100;
 	public Vector3 closestPoint = new Vector3();
 	public int closestPointIndex = new int();
+	private float checkDistMean = -5f;
+
+	private float thresholdSup = 80;
+	private float thresholdInf = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -120,6 +124,26 @@ public class MeshGenerator : MonoBehaviour
 	    	DistPlayer = smallestDist;
 	    	distMean = distMean + (DistPlayer - distMean)/meanLength;
 	    	//meanLength++;
+
+	    	checkDistMean += Time.deltaTime;
+	    	if ( checkDistMean > 8f){
+	    		checkDistMean = 0f;
+	    		//if less than the treshold it's to hard
+	    		if (distMean > thresholdSup ){
+	    			if (Random.Range(0f,1f)>.5f){
+	    				picProbability *= 2f;
+	    			}else{
+	    				girth =  Mathf.RoundToInt(girth/1.1f); 
+	    			}
+	    		}else if( distMean < thresholdInf){
+					if (Random.Range(0f,1f)>.5f){
+	    				picProbability *= 2f;
+	    			}else{
+	    				girth =  Mathf.RoundToInt(girth/1.1f); 
+	    			}
+	    		}
+	    	}
+
 	    }else if( ! motorScript.isPlaying && !obstacleIsRegistered){
 	    	bool pic = obstacleOld[closestPointIndex];
 	    	if ( closestPointIndex+1 < obstacleOld.Length )   pic = pic || obstacleOld[closestPointIndex+1] ;
@@ -127,7 +151,7 @@ public class MeshGenerator : MonoBehaviour
 	    	if (closestPointIndex+xSize < obstacleOld.Length) pic  = pic || obstacleOld[closestPointIndex+xSize]  ;
 	    	if (closestPointIndex-xSize>=0)  				  pic = pic || obstacleOld[closestPointIndex-xSize];
 
-	    	Debug.Log("the obstavle is  "+ pic );
+	    	//Debug.Log("the obstavle is  "+ pic );
 	    	//Debug.Log("the obstavle is a ");
 	    	obstacleIsRegistered = true;
 	    	//obstacleIsRegistered put false in healthScipt
@@ -148,12 +172,13 @@ public class MeshGenerator : MonoBehaviour
     			"MeshPass",
     			new Dictionary<string,object>{
     				{"MeshNumber", nbRepeat-2},
-    				{"MeshGirth", girth}
+    				{"MeshGirth", girth},
+    				{"PicProbability", picProbability}
     			}
 
     		);
     		Debug.Log("Analytics result = "+result);
-    		Debug.Log(" nbrepeat "+nbRepeat);
+    		//Debug.Log(" nbrepeat "+nbRepeat);
     	}
     }
 
@@ -280,7 +305,7 @@ public class MeshGenerator : MonoBehaviour
     		UpdateMesh(mesh1, meshCollider1);
     	}
     	nbRepeat--;
-    	Debug.Log("nbReapt is "+nbRepeat);
+    	//Debug.Log("nbRept is "+nbRepeat);
     }
 
 
