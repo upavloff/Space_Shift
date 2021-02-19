@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
+
 
 public class HealthCollision : MonoBehaviour
 {
@@ -67,6 +69,15 @@ public class HealthCollision : MonoBehaviour
 		//this.enabled = false;
 
 		//handle analytics
+		AnalyticsResult result = Analytics.CustomEvent(
+    			"DieEvent",
+    			new Dictionary<string,object>{
+    				{"DieOnPic", meshScript.dieOnPic},
+    				{"DieOnWall", meshScript.dieOnWall}
+    			}
+
+    		);
+    		Debug.Log("Analytics result = "+result);
 	}
 
     void OnGUI(){

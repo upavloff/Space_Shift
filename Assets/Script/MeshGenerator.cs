@@ -67,6 +67,9 @@ public class MeshGenerator : MonoBehaviour
 	private float thresholdSup = 80;
 	private float thresholdInf = 50;
 
+	public int dieOnPic = 0;
+	public int dieOnWall = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -131,7 +134,7 @@ public class MeshGenerator : MonoBehaviour
 	    		//if less than the treshold it's to hard
 	    		if (distMean > thresholdSup ){
 	    			if (Random.Range(0f,1f)>.5f){
-	    				picProbability *= 2f;
+	    				picProbability *= 1.5f;
 	    			}else{
 	    				girth =  Mathf.RoundToInt(girth/1.1f); 
 	    			}
@@ -156,9 +159,11 @@ public class MeshGenerator : MonoBehaviour
 	    	obstacleIsRegistered = true;
 	    	//obstacleIsRegistered put false in healthScipt
 	    	if (pic){
-	    		picProbability /= 2;
+	    		picProbability /= 1.5f;
+	    		dieOnPic ++;
     		}else{
     			girth =  Mathf.RoundToInt(girth*1.1f); 
+    			dieOnWall ++;
     		}
     		UpdateLastMesh();
 	    }

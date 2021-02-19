@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -8085,6 +8085,17 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 1877193889}
+        m_MethodName: OnPlay
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 2011353096}
         m_MethodName: OnPlay
         m_Mode: 1
         m_Arguments:
@@ -22756,7 +22767,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1231743020
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30699,7 +30710,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -80.00003, y: 49}
+  m_AnchoredPosition: {x: -110.5, y: 35.8}
   m_SizeDelta: {x: 160.00003, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1634533210
@@ -33338,7 +33349,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -37551,6 +37562,7 @@ MonoBehaviour:
   meshCollider2: {fileID: 0}
   player: {fileID: 1877193888}
   motorScript: {fileID: 0}
+  obstacleIsRegistered: 1
   gradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.3679397, b: 0.019607842, a: 1}
@@ -37581,14 +37593,18 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   smooth: 0.9
+  minPic: 0.8
+  maxPic: 1.25
   angleMax: 1.5707964
   pointA: {x: 0, y: 3, z: -4}
   pointB: {x: 0, y: 2, z: -2}
   pointC: {x: 0, y: 1, z: 0}
   DistPlayer: 0
   distMean: 1
-  meanLength: 1
   closestPoint: {x: 0, y: 0, z: 0}
+  closestPointIndex: 0
+  dieOnPic: 0
+  dieOnWall: 0
 --- !u!4 &2011353098
 Transform:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - HealthCollision
     - MeshGenerator
     - PlayerMotor
+    - ReadmeStarSparrow
     - RewindTime
     - ShipCollider
     Unity.RenderPipelines.Core.Runtime.dll:
@@ -42,6 +43,7 @@ ScriptsOnlyBuild:
     - UnityEngine.Rendering.Universal.ChromaticAberration
     - UnityEngine.Rendering.Universal.ColorCurves
     - UnityEngine.Rendering.Universal.ForwardRendererData
+    - UnityEngine.Rendering.Universal.LensDistortion
     - UnityEngine.Rendering.Universal.PostProcessData
     - UnityEngine.Rendering.Universal.UniversalAdditionalCameraData
     - UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset
@@ -111,107 +113,109 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11404}
     - Class: 114
+      Script: {instanceID: 11406}
+    - Class: 114
       Script: {instanceID: 11408}
     - Class: 114
       Script: {instanceID: 11410}
+    - Class: 114
+      Script: {instanceID: 11412}
     - Class: 114
       Script: {instanceID: 11414}
     - Class: 114
       Script: {instanceID: 11416}
     - Class: 114
-      Script: {instanceID: 11418}
+      Script: {instanceID: 11516}
     - Class: 114
-      Script: {instanceID: 11420}
+      Script: {instanceID: 11574}
     - Class: 114
-      Script: {instanceID: 11422}
+      Script: {instanceID: 11682}
     - Class: 114
-      Script: {instanceID: 11520}
+      Script: {instanceID: 11704}
     - Class: 114
-      Script: {instanceID: 11578}
+      Script: {instanceID: 11742}
     - Class: 114
-      Script: {instanceID: 11686}
+      Script: {instanceID: 11878}
     - Class: 114
-      Script: {instanceID: 11708}
+      Script: {instanceID: 11922}
     - Class: 114
-      Script: {instanceID: 11748}
+      Script: {instanceID: 12010}
     - Class: 114
-      Script: {instanceID: 11890}
+      Script: {instanceID: 12090}
     - Class: 114
-      Script: {instanceID: 11936}
+      Script: {instanceID: 12224}
     - Class: 114
-      Script: {instanceID: 12026}
+      Script: {instanceID: 12250}
     - Class: 114
-      Script: {instanceID: 12106}
+      Script: {instanceID: 12392}
     - Class: 114
-      Script: {instanceID: 12266}
+      Script: {instanceID: 12436}
     - Class: 114
-      Script: {instanceID: 12410}
+      Script: {instanceID: 12496}
     - Class: 114
-      Script: {instanceID: 12454}
+      Script: {instanceID: 12614}
     - Class: 114
-      Script: {instanceID: 12514}
+      Script: {instanceID: 12722}
     - Class: 114
-      Script: {instanceID: 12632}
+      Script: {instanceID: 12828}
     - Class: 114
-      Script: {instanceID: 12744}
+      Script: {instanceID: 12934}
     - Class: 114
-      Script: {instanceID: 12850}
+      Script: {instanceID: 12980}
     - Class: 114
-      Script: {instanceID: 12956}
+      Script: {instanceID: 13036}
     - Class: 114
-      Script: {instanceID: 13008}
+      Script: {instanceID: 13068}
     - Class: 114
-      Script: {instanceID: 13064}
+      Script: {instanceID: 13140}
     - Class: 114
-      Script: {instanceID: 13096}
+      Script: {instanceID: 13380}
     - Class: 114
-      Script: {instanceID: 13170}
+      Script: {instanceID: 13406}
     - Class: 114
-      Script: {instanceID: 13418}
+      Script: {instanceID: 13432}
     - Class: 114
-      Script: {instanceID: 13470}
+      Script: {instanceID: 13712}
     - Class: 114
-      Script: {instanceID: 13750}
+      Script: {instanceID: 13774}
     - Class: 114
-      Script: {instanceID: 13812}
+      Script: {instanceID: 13794}
     - Class: 114
-      Script: {instanceID: 13832}
+      Script: {instanceID: 13898}
     - Class: 114
-      Script: {instanceID: 13940}
+      Script: {instanceID: 13924}
     - Class: 114
-      Script: {instanceID: 13966}
+      Script: {instanceID: 13952}
     - Class: 114
-      Script: {instanceID: 13994}
+      Script: {instanceID: 13960}
     - Class: 114
-      Script: {instanceID: 14002}
+      Script: {instanceID: 14272}
     - Class: 114
-      Script: {instanceID: 14324}
+      Script: {instanceID: 14290}
     - Class: 114
-      Script: {instanceID: 14342}
+      Script: {instanceID: 14340}
     - Class: 114
-      Script: {instanceID: 14392}
+      Script: {instanceID: 14568}
     - Class: 114
-      Script: {instanceID: 14622}
+      Script: {instanceID: 14754}
     - Class: 114
-      Script: {instanceID: 14808}
+      Script: {instanceID: 14800}
     - Class: 114
-      Script: {instanceID: 14856}
+      Script: {instanceID: 14922}
     - Class: 114
-      Script: {instanceID: 14978}
+      Script: {instanceID: 15002}
     - Class: 114
-      Script: {instanceID: 15058}
+      Script: {instanceID: 15004}
     - Class: 114
-      Script: {instanceID: 15060}
+      Script: {instanceID: 15032}
     - Class: 114
-      Script: {instanceID: 15088}
+      Script: {instanceID: 15056}
     - Class: 114
-      Script: {instanceID: 15112}
+      Script: {instanceID: 15170}
     - Class: 114
-      Script: {instanceID: 15226}
+      Script: {instanceID: 15178}
     - Class: 114
-      Script: {instanceID: 15234}
-    - Class: 114
-      Script: {instanceID: 15240}
+      Script: {instanceID: 15184}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -241,28 +245,10 @@ ScriptsOnlyBuild:
     className: Toggle
   - hash:
       serializedVersion: 2
-      Hash: a63fc1a3b035e5a0b5839cd7f7b3086e
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.EventSystems
-    className: EventTrigger
-  - hash:
-      serializedVersion: 2
       Hash: 8aa3d6ccbcb54ee8db6c1229854adaaa
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ContentSizeFitter
-  - hash:
-      serializedVersion: 2
-      Hash: 5f1752ed2092162f016c19510c28a8b9
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Button
-  - hash:
-      serializedVersion: 2
-      Hash: caa533b001ae39b864ba8425019e2268
-    assemblyName: UnityEngine.UI.dll
-    namespaceName: UnityEngine.UI
-    className: Shadow
   - hash:
       serializedVersion: 2
       Hash: ae83e830e7a90c0aff918c4c2e520825
@@ -385,12 +371,6 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerVBox
   - hash:
       serializedVersion: 2
-      Hash: f00ca901b734f71f99db8f25241154c4
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Car
-    className: Suspension
-  - hash:
-      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -403,12 +383,6 @@ ScriptsOnlyBuild:
     className: Bloom
   - hash:
       serializedVersion: 2
-      Hash: 78d229a32405f4104025ae9511906999
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Car
-    className: BrakeLight
-  - hash:
-      serializedVersion: 2
       Hash: a5781dc71a671b1ad2b38de19f24b71f
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -419,12 +393,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Experimental.Rendering.Universal
     className: Renderer2DData
-  - hash:
-      serializedVersion: 2
-      Hash: 39a1af780851540205de944aa74817a6
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Car
-    className: SkidTrail
   - hash:
       serializedVersion: 2
       Hash: 48982140c520cbca517d0f96b60a0ba9
@@ -457,12 +425,6 @@ ScriptsOnlyBuild:
     className: SplitToning
   - hash:
       serializedVersion: 2
-      Hash: 718ef0ded913ba15da8a97ccf24793ce
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
-    className: AeroplaneUserControl4Axis
-  - hash:
-      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
@@ -485,12 +447,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_InputField
-  - hash:
-      serializedVersion: 2
-      Hash: 352455aaadb8c98ff36ead557753abfa
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.CrossPlatformInput
-    className: TiltInput
   - hash:
       serializedVersion: 2
       Hash: 7ab0e790220bdca831fdd886b339039d
@@ -589,12 +545,6 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 42396cadf10b77f3a077293197e93634
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Car
-    className: WheelEffects
-  - hash:
-      serializedVersion: 2
       Hash: eb229c6d50b852c329bee0df4153ef20
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -613,10 +563,10 @@ ScriptsOnlyBuild:
     className: Mask
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Car
-    className: CarUserControl
+      Hash: caa533b001ae39b864ba8425019e2268
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Shadow
   - hash:
       serializedVersion: 2
       Hash: 949a5890ce572ec240178521254b72e1
@@ -641,18 +591,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: ControlPlayableAsset
-  - hash:
-      serializedVersion: 2
-      Hash: d67515fd6babd339b8727dc35ae03966
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
-    className: AeroplaneAudio
-  - hash:
-      serializedVersion: 2
-      Hash: 9452dc0dca800cf5f781114ef25a9a87
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
-    className: AeroplaneController
   - hash:
       serializedVersion: 2
       Hash: 5cc439bf63c0539d39588e69465ac2ab
@@ -685,7 +623,7 @@ ScriptsOnlyBuild:
     className: FilmGrain
   - hash:
       serializedVersion: 2
-      Hash: 02a406b4af2ea8cbe2c245eb262087af
+      Hash: 1aca596961bceb67dcab0bfbe5fdc032
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MeshGenerator
@@ -703,24 +641,6 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerIndirectToggle
   - hash:
       serializedVersion: 2
-      Hash: 4bd1cc3c85989d2213a9a8fd9d09e63f
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.CrossPlatformInput
-    className: InputAxisScrollbar
-  - hash:
-      serializedVersion: 2
-      Hash: d7bc2b4e85ce46723a80c1bc49f3798b
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
-    className: AeroplaneAiControl
-  - hash:
-      serializedVersion: 2
-      Hash: fdd7177da17032ba94d98037cc97bb49
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.CrossPlatformInput
-    className: AxisTouchButton
-  - hash:
-      serializedVersion: 2
       Hash: 51b05e403ce1da1805851f42af02f4bb
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering.UI
@@ -733,16 +653,10 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: 3b5fa979dfa71ab095118166f69c74f0
+      Hash: 8299b2b8c443b946ab2dc98a40b4d8a7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RewindTime
-  - hash:
-      serializedVersion: 2
-      Hash: c88c4199b288356ec3eb2f0d85abc619
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.CrossPlatformInput
-    className: ButtonHandler
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -775,18 +689,6 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: 65c9e8f2d0653991d518373cd4240b97
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
-    className: LandingGear
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.CrossPlatformInput
-    className: MobileControlRig
-  - hash:
-      serializedVersion: 2
       Hash: a53651ee3996fbba20dfe0fce02f0b23
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
@@ -797,18 +699,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: RemoteTestResultSender
-  - hash:
-      serializedVersion: 2
-      Hash: e08b7fd025e5743e5563e22fdd827075
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Car
-    className: CarController
-  - hash:
-      serializedVersion: 2
-      Hash: 0334c4a0effc471453cf665c58f76aff
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Car
-    className: CarAIControl
   - hash:
       serializedVersion: 2
       Hash: 50c443b12ccc0b475183318b5088bcc5
@@ -829,10 +719,10 @@ ScriptsOnlyBuild:
     className: VolumeProfile
   - hash:
       serializedVersion: 2
-      Hash: 21ee95b4add1eb6d3d25a1efaa2d13d9
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Car
-    className: CarSelfRighting
+      Hash: 5f1752ed2092162f016c19510c28a8b9
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.UI
+    className: Button
   - hash:
       serializedVersion: 2
       Hash: 0c9920fb850aff7b5ec756815b7a6fc1
@@ -931,19 +821,13 @@ ScriptsOnlyBuild:
     className: Physics2DRaycaster
   - hash:
       serializedVersion: 2
-      Hash: b294ba655397a2a6c58cddd17cea876c
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
-    className: AeroplanePropellerAnimator
-  - hash:
-      serializedVersion: 2
       Hash: a64b8ff703a69f3352c424e9d0bc1c49
     assemblyName: Unity.RenderPipelines.Core.Runtime.dll
     namespaceName: UnityEngine.Rendering
     className: VolumeComponent
   - hash:
       serializedVersion: 2
-      Hash: 1a46e01b5899992dff0b2b10f0510570
+      Hash: 95f098f2a72e4368ca0afb1c14709a08
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMotor
@@ -979,12 +863,6 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerButton
   - hash:
       serializedVersion: 2
-      Hash: 428923bc6e394f67d7e43c7fdc2bc412
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
-    className: JetParticleEffect
-  - hash:
-      serializedVersion: 2
       Hash: 597cfde2e60b842b3acbd2961ff0631b
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
@@ -1003,12 +881,6 @@ ScriptsOnlyBuild:
     className: UniversalRenderPipelineEditorResources
   - hash:
       serializedVersion: 2
-      Hash: daa6a65fb0f785335ff43e9998133a34
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Car
-    className: Mudguard
-  - hash:
-      serializedVersion: 2
       Hash: 6da05449502c54a7bf3cc65b493806ee
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Experimental.Rendering.Universal
@@ -1021,34 +893,16 @@ ScriptsOnlyBuild:
     className: ReadmeStarSparrow
   - hash:
       serializedVersion: 2
-      Hash: c0e061a135ad81adea53b31e6bf68107
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
-    className: AeroplaneControlSurfaceAnimator
-  - hash:
-      serializedVersion: 2
       Hash: 6939772cb3ce775a8e8d99f332534491
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextMeshProUGUI
   - hash:
       serializedVersion: 2
-      Hash: a909505c7e9870f1ee552a40f203397a
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Car
-    className: CarAudio
-  - hash:
-      serializedVersion: 2
       Hash: 6f29b049d6b6b18bee23aaf2fe273e02
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Rendering.Universal
     className: ColorAdjustments
-  - hash:
-      serializedVersion: 2
-      Hash: 718ef0ded913ba15da8a97ccf24793ce
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.Vehicles.Aeroplane
-    className: AeroplaneUserControl2Axis
   - hash:
       serializedVersion: 2
       Hash: f336e086360abe49a3323e5f1583c35a
@@ -1063,7 +917,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerVector2
   - hash:
       serializedVersion: 2
-      Hash: ecaef529b44097cae190ff42ae98e8c8
+      Hash: 2936e40ee219f5adf084e36f0bb248d4
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FollowPlayer
@@ -1085,12 +939,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.RenderPipelines.Universal.Runtime.dll
     namespaceName: UnityEngine.Experimental.Rendering.Universal
     className: CinemachineUniversalPixelPerfect
-  - hash:
-      serializedVersion: 2
-      Hash: 219ec6059796d8951d2adcd8505d0dc2
-    assemblyName: Assembly-CSharp-firstpass.dll
-    namespaceName: UnityStandardAssets.CrossPlatformInput
-    className: TouchPad
   - hash:
       serializedVersion: 2
       Hash: 36112b0a16753cab0931521e4de67ef6
@@ -1201,10 +1049,16 @@ ScriptsOnlyBuild:
     className: Outline
   - hash:
       serializedVersion: 2
-      Hash: 730a251a96114c0f828739aa4a4de582
+      Hash: f640461d8076431d3a3ca87b05858c06
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ShipCollider
+  - hash:
+      serializedVersion: 2
+      Hash: a63fc1a3b035e5a0b5839cd7f7b3086e
+    assemblyName: UnityEngine.UI.dll
+    namespaceName: UnityEngine.EventSystems
+    className: EventTrigger
   - hash:
       serializedVersion: 2
       Hash: 5dea360fb0b147724ac344e6f399c2f3
@@ -1303,7 +1157,7 @@ ScriptsOnlyBuild:
     className: WhiteBalance
   - hash:
       serializedVersion: 2
-      Hash: 8935bcb2cd5a09ac74b4a89449a83245
+      Hash: 3d0c7b1f8ee5d3c5088cba112e3b7ea5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HealthCollision
