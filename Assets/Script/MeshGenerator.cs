@@ -14,6 +14,7 @@ public class MeshGenerator : MonoBehaviour
 
 	public Transform player; 
 	public PlayerMotor motorScript;
+	public HealthCollision healthScipt;
 
 	Vector3[] vertices;
 	int[] triangles;
@@ -67,8 +68,15 @@ public class MeshGenerator : MonoBehaviour
 	private float thresholdSup = 80;
 	private float thresholdInf = 50;
 
+    private int thresholdInfCount = 0;
+    private int thresholdSupCount = 0;	
+    private int oldThresholdInfCount = 0;
+    private int oldThresholdSupCount = 0;
+
 	public int dieOnPic = 0;
 	public int dieOnWall = 0;
+	private int oldDieOnPic = 0;
+    private int oldDieOnWall = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -88,6 +96,7 @@ public class MeshGenerator : MonoBehaviour
     	InitialiseMesh();
 
     	motorScript = player.GetComponent<PlayerMotor>();
+    	healthScipt = player.GetComponent<HealthCollision>();
         
     }
 
@@ -174,16 +183,26 @@ public class MeshGenerator : MonoBehaviour
     		newMesh();
     		//keep track of nbMesh pass
     		AnalyticsResult result = Analytics.CustomEvent(
-    			"MeshPass",
+    			"LevelStat",
     			new Dictionary<string,object>{
     				{"MeshNumber", nbRepeat-2},
     				{"MeshGirth", girth},
-    				{"PicProbability", picProbability}
+    				{"PicProbability", picProbability},
+    				{"DistanceToObstacle", distMean},
+    				{"DieOnPic", dieOnPic - oldDieOnPic},
+    				{"DieOnWall", dieOnWall - oldDieOnWall},
+    				{"ThresholdInf Exceeded", thresholdInfCount - oldThresholdInfCount},
+    				{"ThresholdSup Exceeded", thresholdSupCount - oldThresholdSupCount} ,
+    				{"Life", healthScipt.currentHealth}
     			}
 
     		);
     		Debug.Log("Analytics result = "+result);
     		//Debug.Log(" nbrepeat "+nbRepeat);
+    		oldDieOnPic = dieOnPic;
+    		oldDieOnWall = dieOnWall;
+    		oldThresholdInfCount = thresholdInfCount;
+    		oldThresholdSupCount = thresholdSupCount;
     	}
     }
 
@@ -409,5 +428,17 @@ public class MeshGenerator : MonoBehaviour
 
 	public void OnPlay(){
 		obstacleIsRegistered = false;
+	}
+
+	public void OnDeath(){
+		nbRepeat = 0;
+		thresholdInfCount = 0;
+    	thresholdSupCount = 0;	
+    	oldThresholdInfCount = 0;
+    	oldThresholdSupCount = 0;
+		dieOnPic = 0;
+		dieOnWall = 0;
+		oldDieOnPic = 0;
+    	oldDieOnWall = 0;
 	}
 }

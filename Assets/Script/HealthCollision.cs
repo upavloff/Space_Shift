@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
@@ -21,7 +21,7 @@ public class HealthCollision : MonoBehaviour
 	public GameObject gameOver;
 
 	private int maxHealth = 10;
-	private int currentHealth ;
+	public int currentHealth ;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +45,7 @@ public class HealthCollision : MonoBehaviour
 		//stop motor and folow script
     	motorScript.isPlaying = false;
 		followScript.isPlaying = false;
+		if (currentHealth==0) meshScript.obstacleIsRegistered = true;
     	if (currentHealth<0){
     		Die();
     		return;
@@ -70,14 +71,15 @@ public class HealthCollision : MonoBehaviour
 
 		//handle analytics
 		AnalyticsResult result = Analytics.CustomEvent(
-    			"DieEvent",
-    			new Dictionary<string,object>{
-    				{"DieOnPic", meshScript.dieOnPic},
-    				{"DieOnWall", meshScript.dieOnWall}
-    			}
-
-    		);
-    		Debug.Log("Analytics result = "+result);
+			"DieEvent",
+			new Dictionary<string,object>{
+				{"DieOnPic", meshScript.dieOnPic},
+				{"DieOnWall", meshScript.dieOnWall}
+			}
+		);
+		Debug.Log("Analytics result = "+result);
+	
+    	meshScript.OnDeath();
 	}
 
     void OnGUI(){
