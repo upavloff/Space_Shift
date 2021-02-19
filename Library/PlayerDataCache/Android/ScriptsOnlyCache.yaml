@@ -5,7 +5,6 @@ ScriptsOnlyBuild:
     - HealthCollision
     - MeshGenerator
     - PlayerMotor
-    - ReadmeStarSparrow
     - RewindTime
     - ShipCollider
     Unity.RenderPipelines.Core.Runtime.dll:
@@ -623,7 +622,7 @@ ScriptsOnlyBuild:
     className: FilmGrain
   - hash:
       serializedVersion: 2
-      Hash: 1aca596961bceb67dcab0bfbe5fdc032
+      Hash: 6042ff9b4039d15aa520652ce414804f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MeshGenerator
@@ -1157,7 +1156,7 @@ ScriptsOnlyBuild:
     className: WhiteBalance
   - hash:
       serializedVersion: 2
-      Hash: 3d0c7b1f8ee5d3c5088cba112e3b7ea5
+      Hash: 426ae8883e8b9b710e40c89f5cfdad78
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: HealthCollision
