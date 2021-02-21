@@ -16,7 +16,7 @@ public class FollowPlayer : MonoBehaviour
 
 	private bool usingGyroscope=false;
 
-    private GUIStyle guiStyle = new GUIStyle(); //create a new variable
+    //private GUIStyle guiStyle = new GUIStyle(); //create a new variable
 
 	private PlayerMotor infoMotor;
 
@@ -32,7 +32,7 @@ public class FollowPlayer : MonoBehaviour
 		if (SystemInfo.supportsGyroscope){
 			usingGyroscope=true;
 		}
-		guiStyle.fontSize = 30;
+		//guiStyle.fontSize = 30;
 		infoMotor = player.GetComponent<PlayerMotor>();
 
         initPosition = transform.position;
@@ -54,12 +54,14 @@ public class FollowPlayer : MonoBehaviour
         //transform.rotation = Quaternion.Slerp(transform.rotation, player.rotation, cameraRotationSpeed*Time.deltaTime);
         //transform.rotation = Quaternion.Slerp(transform.rotation, player.rotation, cameraRotationSpeed*Time.deltaTime);
         //transform.rotation = player.rotation;
-        if (usingGyroscope){
+
+        //----- a revoir
+        /*if (usingGyroscope){
         	Vector3 relCoor = infoMotor.relativeCoordinate;
             //transform.rotation = player.rotation*Quaternion.Euler(rotationAdaptSpeed*-relCoor.x,0f,rotationAdaptSpeed*-relCoor.y);
-        	transform.rotation = Quaternion.Slerp(transform.rotation, player.rotation*Quaternion.Euler(rotationAdaptSpeed*-relCoor.x,0f,rotationAdaptSpeed*-relCoor.y),Time.deltaTime*rotationAdaptSpeed);
-        }
-        //transform.rotation = player.rotation*Quaternion.Euler(10,10,0);   //working
+        	transform.rotation = Quaternion.Slerp(transform.rotation, player.rotation*Quaternion.Euler(rotationAdaptSpeed*-relCoor.x,0f,rotationAdaptSpeed*relCoor.z),Time.deltaTime*rotationAdaptSpeed);
+        }*/
+
         transform.rotation = Quaternion.Slerp(transform.rotation ,player.rotation,Time.deltaTime*rotationAdaptSpeed);
     }
 

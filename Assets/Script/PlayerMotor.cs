@@ -16,19 +16,20 @@ public class PlayerMotor : MonoBehaviour
 
     private Quaternion initGyroInput;
 
-    private GUIStyle guiStyle = new GUIStyle(); //create a new variable
+    //private GUIStyle guiStyle = new GUIStyle(); //create a new variable
 
     public Vector3 relativeCoordinate = new Vector3(0,0,0);
     
-	public Scrollbar scrollbar;
+	//public Scrollbar scrollbar;
 
 	public bool isPlaying = false;    
 
 	public Vector3 initPosition;
     public Quaternion initRotation;
 
-    //to sup
-    float angle = 0f;
+    //utilisateur rotation
+    private float angle = 0f;
+    public float maxAngle = 0f;
 
     void Start(){
     	controller = GetComponent<CharacterController>();
@@ -46,7 +47,7 @@ public class PlayerMotor : MonoBehaviour
     		rotSpeedVertical *= 5f;
     		//Debug.Log(" don't supports Gyroscope or Accelerometer");
     	}
-    	guiStyle.fontSize = 30; //change the font size
+    	//guiStyle.fontSize = 30; //change the font size
 		//scrollbar.onValueChanged.AddListener((float val) => ScrollbarCallback(val));
     	initPosition = transform.position;
     	initRotation = transform.rotation;
@@ -77,12 +78,16 @@ public class PlayerMotor : MonoBehaviour
 	    controller.Move(transform.forward * baseSpeed * Time.deltaTime);
     	
     	if (usingGyroscope){
-    		/*angle = Quaternion.Angle(initGyroInput, Input.gyro.attitude);
-    		if (angle<5f) return;*/
+    		angle = Quaternion.Angle(initGyroInput, Input.gyro.attitude);
+    		if (angle > 50f){
+    			rotSpeedVertical *= 0.9f;
+    			rotSpeedHorizontal *= 0.8f;
+    		}
+    		if (angle>maxAngle) maxAngle = angle;
     		
     		Quaternion relativeRotation = Quaternion.Inverse(initGyroInput)*Input.gyro.attitude;
 
-	    	float coordX = relativeRotation.eulerAngles.x;
+	    	float coordX = relativeRotation.eulerAngles.x; 
 	    	float coordY = relativeRotation.eulerAngles.y;
 	    	float coordZ = relativeRotation.eulerAngles.z;
 
@@ -125,9 +130,9 @@ public class PlayerMotor : MonoBehaviour
 	}*/
 
 
-	void OnGUI(){
+	/*void OnGUI(){
 		GUI.Label(new Rect(Screen.width-500, 40,200,100),"ANglE = "+angle);
-	}
+	}*/
 
 
 
@@ -150,7 +155,7 @@ public class PlayerMotor : MonoBehaviour
 
 
 	//part to handle the get back in place
-	public Vector3 Lerp( Vector3 a, Vector3 b, float t ){
+	/*public Vector3 Lerp( Vector3 a, Vector3 b, float t ){
 		return t*b + (1-t)*a;
 	}
 
@@ -164,7 +169,7 @@ public class PlayerMotor : MonoBehaviour
     	Vector3 p0 = QuadraticCurve(a, b, c, t);
 		Vector3 p1 = QuadraticCurve(b, c, d, t);
 		return Lerp(p0,p1, t); 
-    }
+    }*/
 
     public void Reset(){
     	transform.position = initPosition;

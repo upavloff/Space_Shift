@@ -22,7 +22,7 @@ public class HealthCollision : MonoBehaviour
 
 	public GameObject pauseButton;
 
-	private int maxHealth = 2;
+	private int maxHealth = 9;
 	public int currentHealth ;
 
     // Start is called before the first frame update
@@ -80,7 +80,8 @@ public class HealthCollision : MonoBehaviour
 				"DieEvent",
 				new Dictionary<string,object>{
 					{"DieOnPic", meshScript.dieOnPic},
-					{"DieOnWall", meshScript.dieOnWall}
+					{"DieOnWall", meshScript.dieOnWall},
+					{"MaxAngle", motorScript.maxAngle}
 				}
 			);
 			Debug.Log("Analytics result = "+result);
@@ -89,9 +90,9 @@ public class HealthCollision : MonoBehaviour
     	meshScript.OnDeath();
 	}
 
-    void OnGUI(){
+    /*void OnGUI(){
 		GUI.Label(new Rect(Screen.width-500, 60,200,100),"currentHealth = "+currentHealth);
-	}
+	}*/
 
 
 	IEnumerator CloseGameOver(){

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.Analytics;
 
 public class MeshGenerator : MonoBehaviour
@@ -15,6 +16,8 @@ public class MeshGenerator : MonoBehaviour
 	public Transform player; 
 	public PlayerMotor motorScript;
 	public HealthCollision healthScipt;
+
+	public TextMeshProUGUI score;
 
 	Vector3[] vertices;
 	int[] triangles;
@@ -65,8 +68,8 @@ public class MeshGenerator : MonoBehaviour
 	public int closestPointIndex = new int();
 	private float checkDistMean = -5f;
 
-	private float thresholdSup = 80;
-	private float thresholdInf = 50;
+	private float thresholdSup = 76*1.1f;		//based on analytics
+	private float thresholdInf = 76*0.8f;
 
     private int thresholdInfCount = 0;
     private int thresholdSupCount = 0;	
@@ -97,7 +100,7 @@ public class MeshGenerator : MonoBehaviour
 
     	motorScript = player.GetComponent<PlayerMotor>();
     	healthScipt = player.GetComponent<HealthCollision>();
-        
+    	score.text = "0";        
     }
 
     public void InitialiseMesh(){
@@ -170,9 +173,11 @@ public class MeshGenerator : MonoBehaviour
 	    	if (pic){
 	    		picProbability /= 1.5f;
 	    		dieOnPic ++;
+	    		score.text = ""+ (int.Parse(score.text) - 15);
     		}else{
     			girth =  Mathf.RoundToInt(girth*1.1f); 
     			dieOnWall ++;
+	    		score.text = ""+ (int.Parse(score.text) - 25);
     		}
     		UpdateLastMesh();
 	    }
@@ -203,6 +208,7 @@ public class MeshGenerator : MonoBehaviour
     		oldDieOnWall = dieOnWall;
     		oldThresholdInfCount = thresholdInfCount;
     		oldThresholdSupCount = thresholdSupCount;
+    		score.text = ""+ (int.Parse(score.text) + 100);
     	}
     }
 
@@ -329,7 +335,6 @@ public class MeshGenerator : MonoBehaviour
     		UpdateMesh(mesh1, meshCollider1);
     	}
     	nbRepeat--;
-    	//Debug.Log("nbRept is "+nbRepeat);
     }
 
 
@@ -420,11 +425,11 @@ public class MeshGenerator : MonoBehaviour
     	
     }
 
-    void OnGUI(){
+    /*void OnGUI(){
 		GUI.Label(new Rect(Screen.width-500, 80,200,100),"DistPlayer = "+DistPlayer);
 		GUI.Label(new Rect(Screen.width-500, 100,200,100),"MeanDist = "+distMean );
 		//GUI.Label(new Rect(Screen.width-500, 120,200,100),"counter = "+meanLength);
-	}
+	}*/
 
 	public void OnPlay(){
 		obstacleIsRegistered = false;
@@ -440,5 +445,6 @@ public class MeshGenerator : MonoBehaviour
 		dieOnWall = 0;
 		oldDieOnPic = 0;
     	oldDieOnWall = 0;
+    	score.text = "0";
 	}
 }
