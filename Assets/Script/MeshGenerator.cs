@@ -30,14 +30,14 @@ public class MeshGenerator : MonoBehaviour
 
 	public Gradient gradient;
 
-	private int xSize = 40;
-	private int zSize = 80;
+	private int xSize = 60;
+	private int zSize = 120;
 	private float girth = 160f;
 
 	public float smooth = .2f;
 	public float minPic = 0.8f;
 	public float maxPic = 1.25f;
-	private float picProbability = 0.01f;
+	private float picProbability = 0.005f;
 
 	private float minPerlinGirth;
 	private float maxPerlinGirth;

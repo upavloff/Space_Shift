@@ -75,6 +75,7 @@ public class PlayerMotor : MonoBehaviour
 
 	    	float coordX = relativeRotation.eulerAngles.x;
 	    	float coordY = relativeRotation.eulerAngles.y;
+	    	float coordZ = relativeRotation.eulerAngles.z;
 
 	    	//euleur coordinate can't be negative they go straight from 0 to 360 this
 	    	//how you fix it :
@@ -82,9 +83,12 @@ public class PlayerMotor : MonoBehaviour
 	    		coordX=coordX-360;
 	    	}if (coordY>180){
 	    		coordY= coordY-360;
+	    	}if (coordZ>180){
+	    		coordZ= coordZ-360;
 	    	}
 	    	relativeCoordinate = new Vector3(coordX,coordY,0f)*Time.deltaTime;
-	    	transform.rotation *= Quaternion.Euler(Time.deltaTime*rotSpeedVertical*-coordX,0f,Time.deltaTime*rotSpeedHorizontal*-coordY);		//use deltaTime ?
+	    	//transform.rotation *= Quaternion.Euler(Time.deltaTime*rotSpeedVertical*-coordX,0f,Time.deltaTime*rotSpeedHorizontal*-coordY);		//use deltaTime ?
+	    	transform.rotation *= Quaternion.Euler(Time.deltaTime*rotSpeedVertical*-coordX,0f,Time.deltaTime*rotSpeedHorizontal*coordZ);		//use deltaTime ?
 	    }else{	    	
 	    	transform.Rotate( rotSpeedVertical*Input.GetAxis("Vertical")*0.1f,0f,rotSpeedHorizontal * - Input.GetAxis("Horizontal")*0.1f);
 	    }

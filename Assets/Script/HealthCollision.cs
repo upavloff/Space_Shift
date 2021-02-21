@@ -20,7 +20,9 @@ public class HealthCollision : MonoBehaviour
 
 	public GameObject gameOver;
 
-	private int maxHealth = 10;
+	public GameObject pauseButton;
+
+	private int maxHealth = 2;
 	public int currentHealth ;
 
     // Start is called before the first frame update
@@ -47,7 +49,7 @@ public class HealthCollision : MonoBehaviour
 		followScript.isPlaying = false;
 		if (currentHealth==0) meshScript.obstacleIsRegistered = true;
     	if (currentHealth<0){
-    		Die();
+    		Die(true);
     		return;
     	}
     	//turn heart to gray
@@ -55,7 +57,11 @@ public class HealthCollision : MonoBehaviour
     	rewindScript.StartRewind();
 	}
 
-	void Die(){
+	public void Die(bool sendData){
+		//here again beacause of QuitButton
+		motorScript.isPlaying = false;
+		followScript.isPlaying = false;
+		//---
 		Debug.Log("you ded");
 		gameOver.SetActive(true);
 		StartCoroutine(CloseGameOver());
@@ -67,17 +73,18 @@ public class HealthCollision : MonoBehaviour
 			heart.transform.GetChild(1).gameObject.SetActive(true);
 		}
 		life.SetActive(false);
-		//this.enabled = false;
-
+		pauseButton.SetActive(false);
 		//handle analytics
-		AnalyticsResult result = Analytics.CustomEvent(
-			"DieEvent",
-			new Dictionary<string,object>{
-				{"DieOnPic", meshScript.dieOnPic},
-				{"DieOnWall", meshScript.dieOnWall}
-			}
-		);
-		Debug.Log("Analytics result = "+result);
+		if (sendData){
+			AnalyticsResult result = Analytics.CustomEvent(
+				"DieEvent",
+				new Dictionary<string,object>{
+					{"DieOnPic", meshScript.dieOnPic},
+					{"DieOnWall", meshScript.dieOnWall}
+				}
+			);
+			Debug.Log("Analytics result = "+result);
+		}
 	
     	meshScript.OnDeath();
 	}
