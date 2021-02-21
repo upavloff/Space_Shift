@@ -27,6 +27,9 @@ public class PlayerMotor : MonoBehaviour
 	public Vector3 initPosition;
     public Quaternion initRotation;
 
+    //to sup
+    float angle = 0f;
+
     void Start(){
     	controller = GetComponent<CharacterController>();
     	rb = GetComponent<Rigidbody>();
@@ -71,6 +74,9 @@ public class PlayerMotor : MonoBehaviour
     void Update(){
     	if (!isPlaying) return;
     	if (usingGyroscope){
+    		angle = Quaternion.Angle(initGyroInput, Input.gyro.attitude);
+    		if (angle<5f) return;
+    		
     		Quaternion relativeRotation = Quaternion.Inverse(initGyroInput)*Input.gyro.attitude;
 
 	    	float coordX = relativeRotation.eulerAngles.x;
@@ -118,7 +124,7 @@ public class PlayerMotor : MonoBehaviour
 
 
 	void OnGUI(){
-		GUI.Label(new Rect(Screen.width-500, 40,200,100),"Speed = "+baseSpeed);
+		GUI.Label(new Rect(Screen.width-500, 40,200,100),"ANglE = "+angle);
 	}
 
 
