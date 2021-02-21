@@ -73,9 +73,12 @@ public class PlayerMotor : MonoBehaviour
     
     void Update(){
     	if (!isPlaying) return;
+	    
+	    controller.Move(transform.forward * baseSpeed * Time.deltaTime);
+    	
     	if (usingGyroscope){
-    		angle = Quaternion.Angle(initGyroInput, Input.gyro.attitude);
-    		if (angle<5f) return;
+    		/*angle = Quaternion.Angle(initGyroInput, Input.gyro.attitude);
+    		if (angle<5f) return;*/
     		
     		Quaternion relativeRotation = Quaternion.Inverse(initGyroInput)*Input.gyro.attitude;
 
@@ -100,7 +103,6 @@ public class PlayerMotor : MonoBehaviour
 	    }
 
 	    //transform.position +=  transform.forward * baseSpeed * Time.deltaTime;
-	    controller.Move(transform.forward * baseSpeed * Time.deltaTime);
 	    //rb.AddRelativeForce(transform.forward * baseSpeed /* Time.deltaTime*/);
 	    /*if ( controller.Move(transform.forward * baseSpeed * Time.deltaTime) > 0){
 	   		isPlaying = false;

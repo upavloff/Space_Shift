@@ -98,7 +98,7 @@ public class HealthCollision : MonoBehaviour
 		Vector3 initPos = gameOver.transform.position;
 		yield return new WaitForSeconds(1f);
 		float i = 0;
-		while(i<10f){
+		while(i<20f){
 			i+=Time.deltaTime*4f/*vitesse de descente*/;
 			gameOver.transform.position += Vector3.down * i;
 			yield return new WaitForEndOfFrame(); 
