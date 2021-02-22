@@ -19,8 +19,8 @@ public class HealthCollision : MonoBehaviour
 	List<GameObject> lifeElements = new List<GameObject>();
 
 	public GameObject gameOver;
-
 	public GameObject pauseButton;
+	public GameObject score;
 
 	private int maxHealth = 9;
 	public int currentHealth ;
@@ -74,6 +74,7 @@ public class HealthCollision : MonoBehaviour
 		}
 		life.SetActive(false);
 		pauseButton.SetActive(false);
+		score.SetActive(false);
 		//handle analytics
 		if (sendData){
 			AnalyticsResult result = Analytics.CustomEvent(
@@ -81,7 +82,9 @@ public class HealthCollision : MonoBehaviour
 				new Dictionary<string,object>{
 					{"DieOnPic", meshScript.dieOnPic},
 					{"DieOnWall", meshScript.dieOnWall},
-					{"MaxAngle", motorScript.maxAngle}
+					{"LevelReached", meshScript.nbRepeat-1},
+					{"MaxAngleGyro", motorScript.maxAngle},
+					{"StartLife", maxHealth}
 				}
 			);
 			Debug.Log("Analytics result = "+result);

@@ -51,7 +51,7 @@ public class MeshGenerator : MonoBehaviour
 	public float angleMax = Mathf.PI/2f;//3f/2f; //en degré
 	private float distanceBetweenPoints = 1600f;
 
-	private int nbRepeat = 0;
+	public int nbRepeat = 0;
 
 	private Vector3 initA = new Vector3(0,3,-4);
 	private Vector3 initB = new Vector3(0,2,-2);
@@ -174,10 +174,12 @@ public class MeshGenerator : MonoBehaviour
 	    		picProbability /= 1.5f;
 	    		dieOnPic ++;
 	    		score.text = ""+ (int.Parse(score.text) - 15);
+	    		score.GetComponent<Animator>().SetTrigger("highlight");
     		}else{
     			girth =  Mathf.RoundToInt(girth*1.1f); 
     			dieOnWall ++;
 	    		score.text = ""+ (int.Parse(score.text) - 25);
+	    		score.GetComponent<Animator>().SetTrigger("highlight");
     		}
     		UpdateLastMesh();
 	    }
@@ -209,6 +211,7 @@ public class MeshGenerator : MonoBehaviour
     		oldThresholdInfCount = thresholdInfCount;
     		oldThresholdSupCount = thresholdSupCount;
     		score.text = ""+ (int.Parse(score.text) + 100);
+	    	score.GetComponent<Animator>().SetTrigger("highlight");
     	}
     }
 
