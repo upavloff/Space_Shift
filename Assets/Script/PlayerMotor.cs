@@ -80,8 +80,7 @@ public class PlayerMotor : MonoBehaviour
     	if (usingGyroscope){
     		angle = Quaternion.Angle(initGyroInput, Input.gyro.attitude);
     		if (angle > 50f){
-    			rotSpeedVertical *= 0.9f;
-    			rotSpeedHorizontal *= 0.8f;
+    			Debug.Log("Player make big rotation");
     		}
     		if (angle>maxAngle) maxAngle = angle;
     		
