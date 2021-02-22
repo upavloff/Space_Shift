@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1007,6 +1007,7 @@ GameObject:
   - component: {fileID: 156131610}
   - component: {fileID: 156131609}
   - component: {fileID: 156131608}
+  - component: {fileID: 156131611}
   m_Layer: 5
   m_Name: ScoreValue
   m_TagString: Untagged
@@ -1129,6 +1130,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -33}
   m_SizeDelta: {x: 150, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &156131611
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156131607}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fa7909e6c2f9d12958627cd491911193, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &158830682
 GameObject:
   m_ObjectHideFlags: 0
@@ -11486,11 +11506,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usingGyroscope: 0
+  meshScript: {fileID: 2011353096}
   relativeCoordinate: {x: 0, y: 0, z: 0}
   isPlaying: 0
   initPosition: {x: 0, y: 0, z: 0}
   initRotation: {x: 0, y: 0, z: 0, w: 0}
   maxAngle: 0
+  modificationDueToAngle: 0
 --- !u!143 &1877193891
 CharacterController:
   m_ObjectHideFlags: 0
@@ -12418,10 +12440,12 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
+  girth: 160
   smooth: 0.9
   minPic: 0.8
   maxPic: 1.25
   angleMax: 1.5707964
+  nbRepeat: 0
   pointA: {x: 0, y: 3, z: -4}
   pointB: {x: 0, y: 2, z: -2}
   pointC: {x: 0, y: 1, z: 0}

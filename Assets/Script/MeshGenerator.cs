@@ -35,7 +35,7 @@ public class MeshGenerator : MonoBehaviour
 
 	private int xSize = 60;
 	private int zSize = 120;
-	private float girth = 160f;
+	public float girth = 160f;
 
 	public float smooth = .2f;
 	public float minPic = 0.8f;
@@ -212,6 +212,8 @@ public class MeshGenerator : MonoBehaviour
     		oldThresholdSupCount = thresholdSupCount;
     		score.text = ""+ (int.Parse(score.text) + 100);
 	    	score.GetComponent<Animator>().SetTrigger("highlight");
+
+	    	motorScript.modificationDueToAngle = false;
     	}
     }
 

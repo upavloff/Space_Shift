@@ -16,6 +16,8 @@ public class PlayerMotor : MonoBehaviour
 
     private Quaternion initGyroInput;
 
+    public MeshGenerator meshScript;
+
     //private GUIStyle guiStyle = new GUIStyle(); //create a new variable
 
     public Vector3 relativeCoordinate = new Vector3(0,0,0);
@@ -30,6 +32,8 @@ public class PlayerMotor : MonoBehaviour
     //utilisateur rotation
     private float angle = 0f;
     public float maxAngle = 0f;
+
+    public bool modificationDueToAngle = false;
 
     void Start(){
     	controller = GetComponent<CharacterController>();
@@ -79,8 +83,10 @@ public class PlayerMotor : MonoBehaviour
     	
     	if (usingGyroscope){
     		angle = Quaternion.Angle(initGyroInput, Input.gyro.attitude);
-    		if (angle > 50f){
+    		if (angle > 60f  && !modificationDueToAngle){
     			Debug.Log("Player make big rotation");
+    			modificationDueToAngle = true;
+    			meshScript.girth =  Mathf.RoundToInt(meshScript.girth/1.1f); 
     		}
     		if (angle>maxAngle) maxAngle = angle;
     		
@@ -130,7 +136,7 @@ public class PlayerMotor : MonoBehaviour
 
 
 	/*void OnGUI(){
-		GUI.Label(new Rect(Screen.width-500, 40,200,100),"ANglE = "+angle);
+		GUI.Label(new Rect(Screen.width-500, 40,200,100),"angle = "+angle);
 	}*/
 
 
